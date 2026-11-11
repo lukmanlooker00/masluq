@@ -47,7 +47,7 @@ window.PAGE_KARYA = (function () {
         return;
       }
       if (pageTitle) {
-        pageTitle.textContent = foundTrack.headline;
+        pageTitle.textContent = foundTrack.headline || foundTrack.title;
       }
       if (pageSub) {
         pageSub.textContent = foundTrack.summary;
@@ -75,7 +75,7 @@ window.PAGE_KARYA = (function () {
         .map(function (item) {
           var detailHref = window.DOM_UTILS.withRoot("karya/detail.html?slug=" + encodeURIComponent(item.slug));
           var extBtn = item.externalUrl && /^https?:/i.test(item.externalUrl)
-            ? '<a class="btn btn-gold btn-sm" href="' + window.DOM_UTILS.escapeHtml(item.externalUrl) + '" target="_blank" rel="noopener noreferrer">Kunjungi Situs <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>'
+            ? '<a class="btn btn-gold btn-sm" href="' + window.DOM_UTILS.escapeHtml(item.externalUrl) + '" target="_blank" rel="noopener noreferrer">Buka Situs <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>'
             : "";
           return (
             '<article class="portfolio-card">' +
@@ -85,7 +85,7 @@ window.PAGE_KARYA = (function () {
             '<h3 class="card-title"><a href="' + window.DOM_UTILS.escapeHtml(detailHref) + '">' + window.DOM_UTILS.escapeHtml(item.title) + "</a></h3>" +
             '<p class="card-excerpt">' + window.DOM_UTILS.escapeHtml(item.summary) + "</p>" +
             '<div class="portfolio-card-footer">' +
-            '<a class="btn btn-primary btn-sm" href="' + window.DOM_UTILS.escapeHtml(detailHref) + '">Lihat Detail</a>' +
+            '<a class="btn btn-primary btn-sm" href="' + window.DOM_UTILS.escapeHtml(detailHref) + '">Detail</a>' +
             extBtn +
             "</div></div></article>"
           );
@@ -144,7 +144,7 @@ window.PAGE_KARYA = (function () {
     if (found.externalUrl) {
       var extMeta = window.DOM_UTILS.resolveLink(found.externalUrl, false);
       extAction =
-        '<a class="btn btn-gold" href="' + window.DOM_UTILS.escapeHtml(extMeta.href) + '"' + extMeta.attr + '>Buka Tautan Terkait <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>';
+        '<a class="btn btn-gold btn-sm" href="' + window.DOM_UTILS.escapeHtml(extMeta.href) + '"' + extMeta.attr + '>Buka Tautan <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>';
     }
     var bidangParam = found.track === "hukum-manajemen" ? "hukum" : found.track;
     wrap.innerHTML =
@@ -153,9 +153,9 @@ window.PAGE_KARYA = (function () {
       '<div class="magazine-style"><p><strong>' + window.DOM_UTILS.escapeHtml(found.summary) + "</strong></p>" + paragraphs + "</div>" +
       '<div class="info-panel"><div class="info-panel-title">Ruang Lingkup & Kompetensi</div><div class="card-meta">' + stackBadges + "</div></div>" +
       '<div class="admin-actions-row mt-20">' +
-      '<a class="btn btn-outline" href="' + window.DOM_UTILS.escapeHtml(window.DOM_UTILS.withRoot("karya/index.html?track=" + encodeURIComponent(found.track))) + '"><i class="ph ph-arrow-left" aria-hidden="true"></i> Kembali ke Bidang Ini</a>' +
+      '<a class="btn btn-outline btn-sm" href="' + window.DOM_UTILS.escapeHtml(window.DOM_UTILS.withRoot("karya/index.html?track=" + encodeURIComponent(found.track))) + '"><i class="ph ph-arrow-left" aria-hidden="true"></i> Kembali</a>' +
       extAction +
-      '<a class="btn btn-primary" href="' + window.DOM_UTILS.escapeHtml(window.DOM_UTILS.withRoot("kolaborasi/index.html?bidang=" + encodeURIComponent(bidangParam))) + '">Ajukan Kolaborasi Bidang Ini</a>' +
+      '<a class="btn btn-primary btn-sm" href="' + window.DOM_UTILS.escapeHtml(window.DOM_UTILS.withRoot("kolaborasi/index.html?bidang=" + encodeURIComponent(bidangParam))) + '">Kolaborasi</a>' +
       "</div>";
   }
   function init() {

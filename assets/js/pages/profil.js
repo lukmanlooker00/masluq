@@ -39,7 +39,7 @@ window.PAGE_PROFIL = (function () {
           '<div class="timeline-org">' + window.DOM_UTILS.escapeHtml(exp.org) + "</div>" +
           "<p>" + window.DOM_UTILS.escapeHtml(exp.summary) + "</p>" +
           '<ul class="mt-12">' + bullets + "</ul>" +
-          '<div class="mt-12"><a class="section-link" href="' + window.DOM_UTILS.escapeHtml(window.DOM_UTILS.withRoot("kolaborasi/index.html?bidang=" + encodeURIComponent(bidangKey))) + '">Ajukan Kerja Sama di Bidang Ini <i class="ph ph-arrow-right" aria-hidden="true"></i></a></div>' +
+          '<div class="mt-12"><a class="section-link" href="' + window.DOM_UTILS.escapeHtml(window.DOM_UTILS.withRoot("kolaborasi/index.html?bidang=" + encodeURIComponent(bidangKey))) + '">Ajukan Kolaborasi <i class="ph ph-arrow-right" aria-hidden="true"></i></a></div>' +
           "</article></div></section>"
         );
       })

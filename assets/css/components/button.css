@@ -12,6 +12,8 @@
   transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
   text-align: center;
   line-height: 1.25;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .btn-primary {
   background-color: var(--color-primary-blue);
@@ -53,19 +55,26 @@
 .filter-pills {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 20px;
+  gap: 6px;
+  margin-bottom: 14px;
 }
 .filter-pill {
-  padding: 7px 14px;
+  padding: 6px 12px;
   border-radius: 4px;
   border: 1px solid var(--color-border);
   background-color: var(--color-surface);
   color: var(--color-neutral-dark);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 700;
+  white-space: nowrap;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+@media (max-width: 640px) {
+  .filter-pill {
+    padding: 5px 10px;
+    font-size: 0.78rem;
+  }
 }
 .filter-pill:hover,
 .filter-pill.active {

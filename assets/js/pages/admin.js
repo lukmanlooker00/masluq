@@ -61,8 +61,8 @@ window.PAGE_ADMIN = (function () {
               "<div><strong>Keperluan:</strong> " + window.DOM_UTILS.escapeHtml(item.purpose) + "</div>" +
               '<div><strong>Catatan:</strong> ' + window.DOM_UTILS.escapeHtml(item.adminNote || "-") + "</div>" +
               '<div class="admin-actions-row mt-12">' +
-              '<button type="button" class="btn btn-primary btn-sm" data-admin-action="approved" data-req-code="' + window.DOM_UTILS.escapeHtml(item.code) + '">Setujui &amp; Kirim Akses</button>' +
-              '<button type="button" class="btn btn-outline btn-sm" data-admin-action="rejected" data-req-code="' + window.DOM_UTILS.escapeHtml(item.code) + '">Tolak Permohonan</button>' +
+              '<button type="button" class="btn btn-primary btn-sm" data-admin-action="approved" data-req-code="' + window.DOM_UTILS.escapeHtml(item.code) + '">Setujui</button>' +
+              '<button type="button" class="btn btn-outline btn-sm" data-admin-action="rejected" data-req-code="' + window.DOM_UTILS.escapeHtml(item.code) + '">Tolak</button>' +
               "</div></article>"
             );
           })

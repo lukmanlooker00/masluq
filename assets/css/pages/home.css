@@ -317,6 +317,9 @@ html.dark-mode .stat-box:nth-child(3) .stat-icon {
 }
 .gallery-track-viewport {
   overflow: hidden;
+  touch-action: pan-y;
+  user-select: none;
+  cursor: grab;
 }
 .gallery-track {
   display: grid;
@@ -324,6 +327,9 @@ html.dark-mode .stat-box:nth-child(3) .stat-icon {
   grid-auto-columns: calc(33.333% - 8px);
   gap: 12px;
   transition: transform 0.35s ease;
+}
+.gallery-track.is-dragging {
+  transition: none;
 }
 .gallery-item {
   background-color: var(--color-bg-light);
@@ -335,6 +341,7 @@ html.dark-mode .stat-box:nth-child(3) .stat-icon {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
+  -webkit-user-drag: none;
 }
 .gallery-caption {
   padding: 9px 11px;
@@ -347,6 +354,15 @@ html.dark-mode .stat-box:nth-child(3) .stat-icon {
   justify-content: flex-end;
   gap: 6px;
   flex-shrink: 0;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+.gallery-slider-section.is-auto-idle .gallery-nav-controls {
+  opacity: 0.38;
+}
+.gallery-slider-section.is-auto-idle:hover .gallery-nav-controls,
+.gallery-slider-section.is-auto-idle .gallery-nav-controls:focus-within {
+  opacity: 1;
 }
 .ecosystem-section {
   background-color: var(--color-surface);

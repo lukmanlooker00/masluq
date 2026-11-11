@@ -297,7 +297,7 @@ window.LAYOUT_CORE = (function () {
         });
       });
       entries.push(
-        { type: "Profil Hukum", title: "Tentang Muhammad Lukman Hakim, S.H. & Pendidikan", url: "profil/tentang.html", text: "Hukum Keluarga IAI Al-Qolam SMK PGRI BNSP ISI TOEFL" },
+        { type: "Profil Hukum", title: "Tentang Muhammad Lukman Hakim, S.H. & Pendidikan", url: "profil/tentang.html", text: "Hukum Keluarga Universitas Al-Qolam Malang SMK PGRI BNSP ISI TOEFL" },
         { type: "Karier", title: "Pengalaman QMR Pelayaran & Unit Usaha", url: "profil/pengalaman.html", text: "Quality Management Representative Jakalelana Sintara sisitus.com" },
         { type: "Dokumen & Kolaborasi", title: "Ajukan Kerja Sama / Izin Lampiran.pdf & Cek Status", url: "kolaborasi/index.html", text: "permintaan lampiran email persetujuan CV PDF" }
       );
@@ -386,9 +386,14 @@ window.LAYOUT_CORE = (function () {
           return window.DOM_UTILS.escapeHtml(t);
         })
         .join('<span class="ticker-sep" aria-hidden="true">&bull;</span>') + '<span class="ticker-sep" aria-hidden="true">&bull;</span>';
+      var tickerViewport = tickerTrack.closest(".ticker-viewport");
+      if (window.DOM_UTILS.initTickerSwipe) {
+        window.DOM_UTILS.initTickerSwipe(tickerViewport, tickerTrack);
+      }
     }
     var current = 0;
     var dots = dotsWrap.querySelectorAll(".hero-dot");
+    var heroContainer = track.closest(".hero-banner-container");
     function goTo(index) {
       current = (index + slides.length) % slides.length;
       track.style.transform = "translateX(-" + current * 100 + "%)";
@@ -398,24 +403,30 @@ window.LAYOUT_CORE = (function () {
     }
     var prev = document.getElementById("hero-prev-btn");
     var next = document.getElementById("hero-next-btn");
-    if (prev) {
-      prev.addEventListener("click", function () {
-        goTo(current - 1);
-      });
-    }
-    if (next) {
-      next.addEventListener("click", function () {
-        goTo(current + 1);
-      });
-    }
+    var heroCarousel = window.DOM_UTILS.initCarousel({
+      container: heroContainer,
+      viewport: heroContainer,
+      track: track,
+      prevBtn: prev,
+      nextBtn: next,
+      autoIntervalMs: 6500,
+      idleDimDelayMs: 2200,
+      getBaseOffsetPx: function () {
+        var width = heroContainer ? heroContainer.clientWidth : track.clientWidth;
+        return -current * width;
+      },
+      onStep: function (delta) {
+        goTo(current + delta);
+      }
+    });
     dots.forEach(function (dot) {
       dot.addEventListener("click", function () {
         goTo(parseInt(dot.getAttribute("data-slide-idx"), 10));
+        if (heroCarousel) {
+          heroCarousel.notifyInteract();
+        }
       });
     });
-    setInterval(function () {
-      goTo(current + 1);
-    }, 6500);
   }
   function hydrateSidebar() {
     var data = window.SITE_DATA;
@@ -505,17 +516,23 @@ window.LAYOUT_CORE = (function () {
     var bioBody = document.getElementById("bio-modal-body");
     if (bioBody) {
       bioBody.innerHTML =
-        '<div class="modal-profile-row">' +
-        '<img class="modal-profile-img" src="' + window.DOM_UTILS.escapeHtml(window.DOM_UTILS.withRoot(p.portraitPath)) + '" alt="Foto ' + window.DOM_UTILS.escapeHtml(p.fullName) + '" width="110" height="140">' +
-        "<div>" +
-        "<h3>" + window.DOM_UTILS.escapeHtml(p.fullName) + "</h3>" +
-        '<p class="text-muted">' + window.DOM_UTILS.escapeHtml(p.cityRegion) + ", Indonesia</p>" +
-        '<p class="mt-12">Assalamu\'alaikum warahmatullahi wabarakatuh. Selamat datang. Supaya pembicaraan kita langsung tertuju ke kebutuhan Anda, informasi layanan dan latar belakang saya dibagi seperti berikut:</p>' +
-        '<p class="mt-12"><strong>1. Tour &amp; Travel:</strong> ditangani lewat <strong>Jakalelana.id</strong>.<br><strong>2. Website &amp; Sistem Digital:</strong> dikerjakan melalui <strong>PT Sintara Digital Nusantara (sisitus.com)</strong>.<br><strong>3. Hukum, Perkantoran &amp; Manajemen Mutu (QMR):</strong> berbekal pendidikan Sarjana Hukum (S.H.), pengalaman QMR pelayaran, serta sertifikasi BNSP KKNI Level II.</p>' +
-        '<div class="mt-12">' +
-        '<a class="btn btn-primary btn-sm" href="' + window.DOM_UTILS.escapeHtml(window.DOM_UTILS.withRoot("profil/tentang.html")) + '">Profil Hukum &amp; Pendidikan</a> ' +
-        '<a class="btn btn-gold btn-sm" href="' + window.DOM_UTILS.escapeHtml(window.DOM_UTILS.withRoot("kolaborasi/index.html")) + '">Ajukan Kerja Sama / Lampiran</a>' +
-        "</div></div></div>";
+        '<div class="bio-modal-wrap">' +
+        '<div class="bio-modal-head">' +
+        '<img class="bio-modal-photo" src="' + window.DOM_UTILS.escapeHtml(window.DOM_UTILS.withRoot(p.portraitPath)) + '" alt="Foto ' + window.DOM_UTILS.escapeHtml(p.fullName) + '" width="64" height="80">' +
+        '<div class="bio-modal-identity">' +
+        '<h3 class="bio-modal-name">' + window.DOM_UTILS.escapeHtml(p.fullName) + "</h3>" +
+        '<p class="bio-modal-meta">Universitas Al-Qolam Malang • ' + window.DOM_UTILS.escapeHtml(p.cityRegion) + "</p>" +
+        "</div></div>" +
+        '<p class="bio-modal-intro">Halo, selamat datang. Untuk memudahkan komunikasi sesuai kebutuhan Anda, layanan dan profil saya terbagi menjadi tiga bidang:</p>' +
+        '<ul class="bio-modal-list">' +
+        '<li class="bio-modal-item"><span class="bio-modal-item-title">1. Tour &amp; Travel</span><span>Paket wisata, rombongan &amp; armada via <strong>Jakalelana.id</strong>.</span></li>' +
+        '<li class="bio-modal-item"><span class="bio-modal-item-title">2. Website &amp; Sistem Digital</span><span>Pembuatan website &amp; aplikasi di <strong>PT Sintara Digital Nusantara (sisitus.com)</strong>.</span></li>' +
+        '<li class="bio-modal-item"><span class="bio-modal-item-title">3. Hukum, QMR &amp; Perkantoran</span><span>Sarjana Hukum (S.H.), eks QMR pelayaran &amp; sertifikasi BNSP KKNI Level II.</span></li>' +
+        "</ul>" +
+        '<div class="bio-modal-actions">' +
+        '<a class="btn btn-primary btn-sm" href="' + window.DOM_UTILS.escapeHtml(window.DOM_UTILS.withRoot("profil/tentang.html")) + '">Profil Lengkap</a>' +
+        '<a class="btn btn-gold btn-sm" href="' + window.DOM_UTILS.escapeHtml(window.DOM_UTILS.withRoot("kolaborasi/index.html")) + '">Kolaborasi</a>' +
+        "</div></div>";
     }
     var openBio = document.getElementById("open-bio-modal-btn");
     if (openBio) {

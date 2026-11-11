@@ -23,7 +23,6 @@ body {
   line-height: 1.65;
   overflow-x: clip;
   overflow-wrap: break-word;
-  word-break: break-word;
   -webkit-font-smoothing: antialiased;
 }
 img {

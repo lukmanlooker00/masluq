@@ -16,7 +16,7 @@
   color: var(--color-neutral-dark);
   width: 100%;
   max-width: 680px;
-  max-height: 90vh;
+  max-height: 90dvh;
   border-radius: var(--radius-bento);
   border: 1px solid var(--color-border-strong);
   box-shadow: var(--shadow-floating);
@@ -24,19 +24,23 @@
   flex-direction: column;
   overflow: hidden;
 }
+#bio-modal .modal-dialog {
+  max-width: 540px;
+}
 .modal-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 14px 20px;
+  padding: 12px 18px;
   border-bottom: 1px solid var(--color-border);
   background-color: var(--color-neutral-light);
 }
 .modal-title {
-  font-size: 1.08rem;
+  font-size: 1.04rem;
   font-weight: 800;
   color: var(--color-primary-blue);
+  line-height: 1.25;
 }
 .modal-close-btn {
   display: inline-flex;
@@ -51,6 +55,7 @@
   line-height: 1;
   color: var(--color-neutral-dark);
   cursor: pointer;
+  flex-shrink: 0;
 }
 .modal-close-btn:hover {
   background-color: var(--strip-red);
@@ -58,14 +63,14 @@
   color: #ffffff;
 }
 .modal-body {
-  padding: 22px;
+  padding: 18px 20px;
   overflow-y: auto;
-  font-size: 0.95rem;
-  line-height: 1.7;
+  font-size: 0.92rem;
+  line-height: 1.6;
 }
 .modal-profile-row {
   display: flex;
-  gap: 18px;
+  gap: 16px;
   align-items: flex-start;
 }
 .modal-profile-img {
@@ -77,10 +82,93 @@
   border: 2px solid var(--color-accent-gold);
   flex-shrink: 0;
 }
+.bio-modal-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+.bio-modal-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-border);
+}
+.bio-modal-photo {
+  width: 64px;
+  height: 80px;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 6px;
+  border: 2px solid var(--color-accent-gold);
+  flex-shrink: 0;
+}
+.bio-modal-identity {
+  min-width: 0;
+  flex: 1;
+}
+.bio-modal-name {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--color-primary-blue);
+  line-height: 1.25;
+  margin-bottom: 2px;
+}
+.bio-modal-meta {
+  font-size: 0.79rem;
+  color: var(--color-neutral-medium);
+  line-height: 1.35;
+}
+.bio-modal-intro {
+  font-size: 0.88rem;
+  color: var(--color-neutral-dark);
+  line-height: 1.5;
+  margin: 0;
+}
+.bio-modal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.bio-modal-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background-color: var(--color-bg-light);
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+.bio-modal-item-title {
+  font-weight: 800;
+  color: var(--color-primary-blue);
+  font-size: 0.85rem;
+}
+.bio-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 2px;
+}
 .search-input-wrap {
   display: flex;
+  align-items: stretch;
   gap: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
+}
+.search-input-wrap .form-control {
+  flex: 1;
+  min-width: 0;
+}
+.search-input-wrap .btn {
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 .search-results-list {
   display: flex;
@@ -119,16 +207,62 @@
   padding: 18px;
   border-radius: 10px;
 }
-@media (max-width: 768px) {
-  .modal-body {
-    padding: 15px;
+@media (max-width: 640px) {
+  .modal-overlay {
+    padding: 10px;
+  }
+  .modal-dialog {
+    max-height: 88dvh;
   }
   .modal-header {
-    padding: 12px 15px;
+    padding: 10px 14px;
+  }
+  .modal-title {
+    font-size: 0.96rem;
+  }
+  .modal-body {
+    padding: 12px 14px;
+    font-size: 0.84rem;
+    line-height: 1.5;
   }
   .modal-profile-row {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+  }
+  .bio-modal-wrap {
+    gap: 8px;
+  }
+  .bio-modal-head {
+    gap: 10px;
+    padding-bottom: 8px;
+  }
+  .bio-modal-photo {
+    width: 52px;
+    height: 64px;
+  }
+  .bio-modal-name {
+    font-size: 0.94rem;
+  }
+  .bio-modal-meta {
+    font-size: 0.74rem;
+  }
+  .bio-modal-intro {
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+  .bio-modal-item {
+    padding: 7px 9px;
+    font-size: 0.79rem;
+  }
+  .bio-modal-item-title {
+    font-size: 0.81rem;
+  }
+  .bio-modal-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .bio-modal-actions .btn {
+    width: 100%;
   }
 }

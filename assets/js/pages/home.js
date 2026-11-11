@@ -78,6 +78,8 @@ window.PAGE_HOME = (function () {
     var idx = 0;
     var prev = document.getElementById("gallery-prev-btn");
     var next = document.getElementById("gallery-next-btn");
+    var viewport = track.closest(".gallery-track-viewport");
+    var section = track.closest(".gallery-slider-section");
     function getPerView() {
       if (window.innerWidth <= 640) {
         return 1;
@@ -86,6 +88,10 @@ window.PAGE_HOME = (function () {
         return 2;
       }
       return 3;
+    }
+    function getStepPx() {
+      var firstCard = track.querySelector(".gallery-item");
+      return firstCard ? firstCard.getBoundingClientRect().width + 12 : 0;
     }
     function updateSlide() {
       var perView = getPerView();
@@ -96,28 +102,30 @@ window.PAGE_HOME = (function () {
       if (idx < 0) {
         idx = maxIdx;
       }
-      var firstCard = track.querySelector(".gallery-item");
-      var gap = 12;
-      if (firstCard) {
-        var step = firstCard.getBoundingClientRect().width + gap;
+      var step = getStepPx();
+      if (step > 0) {
         track.style.transform = "translateX(-" + idx * step + "px)";
         return;
       }
       var pct = idx * (100 / perView);
       track.style.transform = "translateX(-" + pct + "%)";
     }
-    if (prev) {
-      prev.addEventListener("click", function () {
-        idx -= 1;
+    window.DOM_UTILS.initCarousel({
+      container: section || viewport,
+      viewport: viewport || track,
+      track: track,
+      prevBtn: prev,
+      nextBtn: next,
+      autoIntervalMs: 5000,
+      idleDimDelayMs: 2200,
+      getBaseOffsetPx: function () {
+        return -idx * getStepPx();
+      },
+      onStep: function (delta) {
+        idx += delta;
         updateSlide();
-      });
-    }
-    if (next) {
-      next.addEventListener("click", function () {
-        idx += 1;
-        updateSlide();
-      });
-    }
+      }
+    });
     window.addEventListener("resize", updateSlide);
   }
   function renderEcosystem() {

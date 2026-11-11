@@ -3,7 +3,7 @@ window.SITE_DATA = {
     fullName: "Muhammad Lukman Hakim, S.H.",
     shortName: "Lukman Hakim",
     monogram: "MLH",
-    tagline: "Sarjana Hukum • Pemilik Usaha • Pengembang Web",
+    tagline: "Sarjana Hukum • Pengusaha • Web Dev",
     cityRegion: "Sidoarjo, Jawa Timur",
     address: "Jl. Manyar II, Sidoarjo, Jawa Timur, Indonesia",
     phoneDisplay: "0812-1528-9095",
@@ -18,7 +18,7 @@ window.SITE_DATA = {
     logoPath: "assets/img/logo/logo.webp",
     cvPath: "assets/docs/Curriculum_Vitae.pdf",
     quote: "Setiap keperluan kerja sama sudah saya pisahkan pintunya, supaya Anda yang butuh travel, jasa website, maupun tenaga hukum atau manajemen bisa langsung berdiskusi sesuai tujuannya.",
-    aboutShort: "Lulusan S1 Hukum Keluarga IAI Al-Qolam Malang, mantan QMR perusahaan pelayaran, pemilik Jakalelana.id dan PT Sintara Digital Nusantara (sisitus.com), serta fullstack web developer.",
+    aboutShort: "Lulusan S1 Hukum Keluarga Universitas Al-Qolam Malang, mantan QMR perusahaan pelayaran, pemilik Jakalelana.id dan PT Sintara Digital Nusantara (sisitus.com), serta fullstack web developer.",
     copyright: "© 2026 Muhammad Lukman Hakim, S.H. Seluruh hak cipta dilindungi.",
     siteBadge: "Situs Personal Resmi • Sidoarjo, Indonesia"
   },
@@ -30,10 +30,10 @@ window.SITE_DATA = {
       key: "karya",
       icon: "ph-compass",
       children: [
-        { label: "Tour & Travel (Jakalelana.id)", href: "karya/index.html?track=travel" },
-        { label: "Website & Digital (PT Sintara)", href: "karya/index.html?track=digital" },
-        { label: "Hukum, QMR & Perkantoran", href: "karya/index.html?track=hukum-manajemen" },
-        { label: "Lihat Semua Bidang", href: "karya/index.html" }
+        { label: "Jakalelana.id (Travel)", href: "karya/index.html?track=travel" },
+        { label: "PT Sintara (Website)", href: "karya/index.html?track=digital" },
+        { label: "Hukum & QMR", href: "karya/index.html?track=hukum-manajemen" },
+        { label: "Semua Bidang", href: "karya/index.html" }
       ]
     },
     {
@@ -43,22 +43,21 @@ window.SITE_DATA = {
       icon: "ph-user",
       children: [
         { label: "Tentang & Pendidikan", href: "profil/tentang.html" },
-        { label: "Pengalaman Kerja & Usaha", href: "profil/pengalaman.html" }
+        { label: "Pengalaman & Usaha", href: "profil/pengalaman.html" }
       ]
     },
-    { label: "Antologi Puisi", href: "puisi/index.html", key: "puisi", icon: "ph-book-open-text" },
+    { label: "Puisi", href: "puisi/index.html", key: "puisi", icon: "ph-book-open-text" },
     {
-      label: "Kolaborasi & Dokumen",
+      label: "Kolaborasi",
       href: "kolaborasi/index.html",
       key: "kolaborasi",
       icon: "ph-handshake",
       children: [
-        { label: "Ajukan Kerja Sama / Izin Lampiran", href: "kolaborasi/index.html" },
-        { label: "Unduh Curriculum Vitae (PDF)", href: "assets/docs/Curriculum_Vitae.pdf", external: true },
-        { label: "Cek Status Permohonan", href: "kolaborasi/index.html#status-akses" }
+        { label: "Ajukan Kolaborasi", href: "kolaborasi/index.html" },
+        { label: "Unduh CV (PDF)", href: "assets/docs/Curriculum_Vitae.pdf", external: true },
+        { label: "Cek Status Tiket", href: "kolaborasi/index.html#status-akses" }
       ]
-    },
-    { label: "Portal Admin", href: "admin/index.html", key: "admin", icon: "ph-lock-key" }
+    }
   ],
   footerMenus: [
     { label: "Beranda", href: "index.html" },
@@ -71,8 +70,8 @@ window.SITE_DATA = {
     { label: "Jakalelana.id", href: "https://jakalelana.id", external: true },
     { label: "Sisitus.com (PT Sintara)", href: "https://sisitus.com", external: true },
     { label: "Curriculum Vitae (PDF)", href: "assets/docs/Curriculum_Vitae.pdf", external: true },
-    { label: "Permohonan Lampiran.pdf", href: "kolaborasi/index.html" },
-    { label: "Portal Admin Dokumen", href: "admin/index.html" }
+    { label: "Izin Lampiran.pdf", href: "kolaborasi/index.html?bidang=lampiran" },
+    { label: "Kolaborasi & Dokumen", href: "kolaborasi/index.html" }
   ],
   heroSlides: [
     {
@@ -100,8 +99,8 @@ window.SITE_DATA = {
       icon: "ph-airplane-tilt",
       title: "Tour & Travel",
       entity: "Jakalelana.id",
-      desc: "Paket wisata, kunjungan instansi & armada.",
-      cta: "Lihat Layanan",
+      desc: "Paket wisata, rombongan & transportasi.",
+      cta: "Layanan",
       href: "#jalur-travel"
     },
     {
@@ -109,17 +108,17 @@ window.SITE_DATA = {
       icon: "ph-code",
       title: "Website & Sistem",
       entity: "PT Sintara (sisitus.com)",
-      desc: "Pembuatan website, aplikasi & sistem kerja.",
-      cta: "Lihat Jasa Web",
+      desc: "Website, aplikasi & sistem kerja.",
+      cta: "Jasa Web",
       href: "#jalur-digital"
     },
     {
       badge: "Bidang 03",
       icon: "ph-scales",
-      title: "Hukum, QMR & Kantor",
-      entity: "Sarjana Hukum • Eks QMR",
-      desc: "Manajemen mutu, SOP, surat & arsip.",
-      cta: "Lihat Kualifikasi",
+      title: "Hukum & QMR",
+      entity: "S.H. • Eks QMR",
+      desc: "Mutu, SOP, surat & arsip kantor.",
+      cta: "Kualifikasi",
       href: "#jalur-hukum-manajemen"
     },
     {
@@ -127,8 +126,8 @@ window.SITE_DATA = {
       icon: "ph-file-pdf",
       title: "CV & Lampiran.pdf",
       entity: "Dokumen Pribadi",
-      desc: "Unduh CV atau minta akses lampiran resmi.",
-      cta: "Buka Berkas",
+      desc: "Unduh CV atau ajukan izin lampiran resmi.",
+      cta: "Buka",
       href: "kolaborasi/index.html"
     }
   ],
@@ -136,8 +135,8 @@ window.SITE_DATA = {
     {
       key: "travel",
       anchorId: "jalur-travel",
-      badge: "Tour & Travel • Jakalelana.id",
-      title: "Perjalanan Wisata & Transportasi — Jakalelana.id",
+      badge: "Tour & Travel",
+      title: "Wisata & Armada — Jakalelana.id",
       entity: "Jakalelana Tour & Travel (jakalelana.id)",
       summary: "Urusan perjalanan wisata keluarga, study tour sekolah, kunjungan instansi, hingga sewa kendaraan saya kelola langsung lewat Jakalelana Tour & Travel.",
       points: [
@@ -147,15 +146,15 @@ window.SITE_DATA = {
       ],
       image: "assets/img/karya/karya-jakalelana.webp",
       imageAlt: "Jakalelana Tour & Travel — jakalelana.id",
-      primaryBtn: { label: "Buka Jakalelana.id", url: "https://jakalelana.id", external: true },
-      secondaryBtn: { label: "Tanya Paket Travel", url: "kolaborasi/index.html?bidang=travel" },
-      detailBtn: { label: "Detail Jakalelana", url: "karya/index.html?track=travel" }
+      primaryBtn: { label: "Jakalelana.id", url: "https://jakalelana.id", external: true },
+      secondaryBtn: { label: "Tanya Paket", url: "kolaborasi/index.html?bidang=travel" },
+      detailBtn: { label: "Detail", url: "karya/index.html?track=travel" }
     },
     {
       key: "digital",
       anchorId: "jalur-digital",
-      badge: "Pembuatan Website & Sistem",
-      title: "Website & Aplikasi Web — PT Sintara Digital Nusantara",
+      badge: "Website & Digital",
+      title: "Web & Sistem — PT Sintara Digital",
       entity: "PT Sintara Digital Nusantara (sisitus.com)",
       summary: "Kebutuhan pembuatan situs company profile perusahaan, web sekolah, portal organisasi, hingga sistem aplikasi berbasis web ditangani tim PT Sintara Digital Nusantara.",
       points: [
@@ -165,27 +164,27 @@ window.SITE_DATA = {
       ],
       image: "assets/img/karya/karya-sintara.webp",
       imageAlt: "PT Sintara Digital Nusantara — sisitus.com",
-      primaryBtn: { label: "Buka Sisitus.com", url: "https://sisitus.com", external: true },
-      secondaryBtn: { label: "Konsultasi Website", url: "kolaborasi/index.html?bidang=digital" },
-      detailBtn: { label: "Portofolio Web", url: "karya/index.html?track=digital" }
+      primaryBtn: { label: "Sisitus.com", url: "https://sisitus.com", external: true },
+      secondaryBtn: { label: "Konsultasi", url: "kolaborasi/index.html?bidang=digital" },
+      detailBtn: { label: "Portofolio", url: "karya/index.html?track=digital" }
     },
     {
       key: "hukum-manajemen",
       anchorId: "jalur-hukum-manajemen",
-      badge: "Keahlian Hukum, QMR & Perkantoran",
-      title: "Sarjana Hukum (S.H.), Manajemen Mutu (QMR) & Administrasi",
+      badge: "Hukum, QMR & Kantor",
+      title: "Sarjana Hukum (S.H.), QMR & Administrasi",
       entity: "Muhammad Lukman Hakim, S.H.",
       summary: "Terpisah dari unit usaha di atas, jalur ini memuat latar pendidikan S1 Hukum, pengalaman kerja sebagai QMR di perusahaan pelayaran, serta keahlian tata kelola administrasi kantor.",
       points: [
         "Berpengalaman sebagai Quality Management Representative (QMR) perusahaan pelayaran.",
-        "Lulusan S1 Hukum Keluarga (S.H.), IAI Al-Qolam Malang pada Agustus 2023.",
+        "Lulusan S1 Hukum Keluarga (S.H.), Universitas Al-Qolam Malang pada Agustus 2023.",
         "Bersertifikat BNSP KKNI Level II Administrasi Perkantoran dan peserta kompetisi ISI Malang."
       ],
       image: "assets/img/karya/karya-pelayaran.webp",
       imageAlt: "Keahlian Hukum, Manajemen Mutu QMR, dan Administrasi Perkantoran",
-      primaryBtn: { label: "Profil & Pendidikan", url: "profil/tentang.html", external: false },
-      secondaryBtn: { label: "Unduh CV (PDF)", url: "assets/docs/Curriculum_Vitae.pdf", external: true },
-      detailBtn: { label: "Ajukan Lampiran.pdf", url: "kolaborasi/index.html?bidang=hukum" }
+      primaryBtn: { label: "Profil", url: "profil/tentang.html", external: false },
+      secondaryBtn: { label: "Unduh CV", url: "assets/docs/Curriculum_Vitae.pdf", external: true },
+      detailBtn: { label: "Izin Lampiran", url: "kolaborasi/index.html?bidang=hukum" }
     }
   ],
   experiences: [
@@ -233,7 +232,7 @@ window.SITE_DATA = {
     {
       year: "2019 – 2023",
       title: "S1 Hukum Keluarga (Sarjana Hukum / S.H.)",
-      institution: "Institut Agama Islam (IAI) Al-Qolam Malang",
+      institution: "Universitas Al-Qolam Malang",
       note: "Lulus pada Agustus 2023."
     },
     {
@@ -309,7 +308,7 @@ window.SITE_DATA = {
       details: [
         "Menyediakan formulir permintaan beserta kode tiket pengecekan tanpa harus menyewa server VPS terpisah.",
         "Memisahkan akses data pengunjung dari halaman persetujuan milik pemilik situs.",
-        "Begitu permohonan disetujui di halaman admin, skrip Google Apps Script menyiapkan pembagian file di Google Drive."
+        "Begitu permohonan disetujui pemilik, skrip Google Apps Script menyiapkan pembagian file di Google Drive."
       ],
       stack: ["HTML/CSS/JS", "Firebase RTDB", "Google Apps Script", "sisitus.com"]
     },
@@ -336,7 +335,7 @@ window.SITE_DATA = {
       categoryLabel: "Hukum & Perkantoran • S.H.",
       date: "Pendidikan & Sertifikasi",
       title: "Sarjana Hukum (S.H.) & Administrasi Perkantoran",
-      subtitle: "Lulusan S1 Hukum Keluarga IAI Al-Qolam Malang & sertifikasi BNSP KKNI Level II.",
+      subtitle: "Lulusan S1 Hukum Keluarga Universitas Al-Qolam Malang & sertifikasi BNSP KKNI Level II.",
       image: "assets/img/karya/karya-hukum.webp",
       externalUrl: "",
       summary: "Latar belakang S1 Hukum Keluarga yang ditopang pendidikan SMK Administrasi Perkantoran, sertifikat BNSP KKNI Level II, serta pengalaman lomba sekretaris ISI Malang.",
@@ -367,9 +366,9 @@ window.SITE_DATA = {
   ],
   collaborationOptions: [
     { value: "travel", label: "Tour & Travel (Jakalelana.id)" },
-    { value: "digital", label: "Jasa Website & Sistem (PT Sintara / sisitus.com)" },
-    { value: "hukum", label: "Kerja Sama / Lowongan Hukum (S.H.), QMR & Kantor" },
-    { value: "lampiran", label: "Minta Akses Lampiran.pdf (Ijazah & Sertifikat Pribadi)" }
+    { value: "digital", label: "Website & Sistem (PT Sintara / sisitus.com)" },
+    { value: "hukum", label: "Hukum (S.H.), QMR & Kantor" },
+    { value: "lampiran", label: "Izin Lampiran.pdf (Ijazah & Sertifikat)" }
   ],
   galleryItems: [
     {
@@ -404,12 +403,12 @@ window.SITE_DATA = {
     }
   ],
   ecosystemLinks: [
-    { label: "Tour & Travel: Jakalelana.id", url: "https://jakalelana.id", icon: "ph-airplane-tilt" },
-    { label: "Website & Sistem: PT Sintara (sisitus.com)", url: "https://sisitus.com", icon: "ph-code" },
+    { label: "Jakalelana.id (Travel)", url: "https://jakalelana.id", icon: "ph-airplane-tilt" },
+    { label: "PT Sintara (sisitus.com)", url: "https://sisitus.com", icon: "ph-code" },
     { label: "Instagram @lukman_looker", url: "https://www.instagram.com/lukman_looker/", icon: "ph-instagram-logo" },
-    { label: "Facebook Muhammad Lukman Hakim", url: "https://www.facebook.com/search/top?q=muhammad%20lukman%20hakim", icon: "ph-facebook-logo" },
+    { label: "Facebook Lukman Hakim", url: "https://www.facebook.com/search/top?q=muhammad%20lukman%20hakim", icon: "ph-facebook-logo" },
     { label: "WhatsApp 0812-1528-9095", url: "https://wa.me/6281215289095", icon: "ph-whatsapp-logo" },
-    { label: "Unduh Curriculum Vitae (PDF)", url: "assets/docs/Curriculum_Vitae.pdf", icon: "ph-file-pdf" }
+    { label: "Unduh CV (PDF)", url: "assets/docs/Curriculum_Vitae.pdf", icon: "ph-file-pdf" }
   ],
   poems: [
     {

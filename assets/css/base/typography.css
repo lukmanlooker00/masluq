@@ -20,6 +20,7 @@ h4 {
   font-weight: 800;
   color: var(--color-primary-blue);
   letter-spacing: -0.01em;
+  min-width: 0;
 }
 .section-title-accent {
   color: var(--color-accent-gold);
@@ -29,6 +30,7 @@ h4 {
   font-weight: 700;
   color: var(--color-primary-blue);
   white-space: nowrap;
+  flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   gap: 4px;
