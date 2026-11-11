@@ -19,6 +19,42 @@ window.LAYOUT_CORE = (function () {
         return target;
       });
   }
+  function setText(id, val) {
+    var el = document.getElementById(id);
+    if (el) {
+      el.textContent = val || "";
+    }
+  }
+  function isCurrentSubLink(rawHref) {
+    if (!rawHref || window.DOM_UTILS.isExternalUrl(rawHref)) {
+      return false;
+    }
+    try {
+      var targetUrl = new URL(window.DOM_UTILS.withRoot(rawHref), window.location.href);
+      var currentUrl = new URL(window.location.href);
+      if (targetUrl.pathname !== currentUrl.pathname) {
+        return false;
+      }
+      if (targetUrl.search && targetUrl.search !== currentUrl.search) {
+        return false;
+      }
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+  function hydrateHeaderBrand() {
+    var profile = window.SITE_DATA.profile;
+    setText("header-brand-name", profile.fullName);
+    setText("header-brand-sub", profile.tagline);
+    setText("drawer-brand-name", profile.shortName + ", S.H.");
+    var drawerMeta = document.getElementById("drawer-contact-meta");
+    if (drawerMeta) {
+      drawerMeta.innerHTML =
+        '<span><i class="ph ph-map-pin" aria-hidden="true"></i> ' + window.DOM_UTILS.escapeHtml(profile.cityRegion) + "</span>" +
+        '<span><i class="ph ph-whatsapp-logo" aria-hidden="true"></i> ' + window.DOM_UTILS.escapeHtml(profile.phoneDisplay) + "</span>";
+    }
+  }
   function renderTopBarAndNav() {
     var data = window.SITE_DATA;
     var activeNav = document.body.getAttribute("data-nav") || "";
@@ -37,38 +73,56 @@ window.LAYOUT_CORE = (function () {
         var hasChildren = item.children && item.children.length > 0;
         var isActive = activeNav === item.key ? " active" : "";
         var href = window.DOM_UTILS.withRoot(item.href);
+        var itemIcon = item.icon ? '<i class="ph ' + window.DOM_UTILS.escapeHtml(item.icon) + ' nav-item-icon" aria-hidden="true"></i>' : "";
         var dropdownHtml = "";
         if (hasChildren) {
           dropdownHtml =
             '<ul class="nav-dropdown">' +
             item.children
               .map(function (sub) {
-                var subHref = window.DOM_UTILS.withRoot(sub.href);
-                var ext = sub.external ? ' target="_blank" rel="noopener noreferrer"' : "";
-                var extIcon = sub.external ? '<i class="ph ph-arrow-up-right" aria-hidden="true"></i>' : "";
-                return '<li><a class="nav-dropdown-link" href="' + window.DOM_UTILS.escapeHtml(subHref) + '"' + ext + "><span>" + window.DOM_UTILS.escapeHtml(sub.label) + "</span>" + extIcon + "</a></li>";
+                var linkMeta = window.DOM_UTILS.resolveLink(sub.href, sub.external);
+                var subActive = isCurrentSubLink(sub.href) ? " active" : "";
+                var extIcon = linkMeta.isExternal ? '<i class="ph ph-arrow-up-right" aria-hidden="true"></i>' : "";
+                return '<li><a class="nav-dropdown-link' + subActive + '" href="' + window.DOM_UTILS.escapeHtml(linkMeta.href) + '"' + linkMeta.attr + "><span>" + window.DOM_UTILS.escapeHtml(sub.label) + "</span>" + extIcon + "</a></li>";
               })
               .join("") +
             "</ul>";
         }
         var chevron = hasChildren ? ' <i class="ph ph-caret-down nav-caret" aria-hidden="true"></i>' : "";
+        var linkExpandedAttr = hasChildren ? ' aria-expanded="false"' : "";
         return (
           '<li class="nav-item' + (hasChildren ? " has-dropdown" : "") + '">' +
-          '<a class="nav-link' + isActive + '" href="' + window.DOM_UTILS.escapeHtml(href) + '">' +
-          "<span>" + window.DOM_UTILS.escapeHtml(item.label) + "</span>" + chevron +
+          '<a class="nav-link' + isActive + '" href="' + window.DOM_UTILS.escapeHtml(href) + '"' + linkExpandedAttr + ">" +
+          '<span class="nav-link-main">' + itemIcon + "<span>" + window.DOM_UTILS.escapeHtml(item.label) + "</span></span>" + chevron +
           "</a>" +
           dropdownHtml +
           "</li>"
         );
       })
-      .join("");
+      .join("") +
+      '<li class="nav-item nav-item-theme">' +
+      '<button type="button" class="nav-link nav-theme-toggle" id="mobile-theme-toggle-btn" data-theme-toggle="drawer" aria-pressed="false"></button>' +
+      "</li>";
   }
   function bindNavigationEvents() {
     var nav = document.getElementById("main-nav");
     var openBtn = document.getElementById("mobile-nav-open");
     var closeBtn = document.getElementById("mobile-nav-close");
     var backdrop = document.getElementById("mobile-nav-backdrop");
-    function setDrawerState(isOpen) {
+    function expandActiveGroup() {
+      if (!nav || window.innerWidth > 1024) {
+        return;
+      }
+      nav.querySelectorAll(".nav-item.has-dropdown").forEach(function (group) {
+        var isCurrentGroup = Boolean(group.querySelector(".nav-link.active, .nav-dropdown-link.active"));
+        group.classList.toggle("open", isCurrentGroup);
+        var trigger = group.querySelector(":scope > .nav-link");
+        if (trigger) {
+          trigger.setAttribute("aria-expanded", isCurrentGroup ? "true" : "false");
+        }
+      });
+    }
+    function setDrawerState(isOpen, restoreFocus) {
       if (!nav) {
         return;
       }
@@ -80,20 +134,38 @@ window.LAYOUT_CORE = (function () {
       if (openBtn) {
         openBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
       }
+      if (window.innerWidth <= 1024) {
+        nav.setAttribute("aria-hidden", isOpen ? "false" : "true");
+      } else {
+        nav.removeAttribute("aria-hidden");
+      }
+      if (isOpen) {
+        expandActiveGroup();
+        if (closeBtn) {
+          setTimeout(function () {
+            closeBtn.focus();
+          }, 50);
+        }
+      } else if (restoreFocus && openBtn) {
+        openBtn.focus();
+      }
+    }
+    if (window.innerWidth <= 1024 && nav) {
+      nav.setAttribute("aria-hidden", "true");
     }
     if (openBtn && nav) {
       openBtn.addEventListener("click", function () {
-        setDrawerState(!nav.classList.contains("active"));
+        setDrawerState(!nav.classList.contains("active"), false);
       });
     }
     if (closeBtn && nav) {
       closeBtn.addEventListener("click", function () {
-        setDrawerState(false);
+        setDrawerState(false, true);
       });
     }
     if (backdrop) {
       backdrop.addEventListener("click", function () {
-        setDrawerState(false);
+        setDrawerState(false, false);
       });
     }
     document.querySelectorAll(".nav-item.has-dropdown > .nav-link").forEach(function (link) {
@@ -101,13 +173,18 @@ window.LAYOUT_CORE = (function () {
         if (window.innerWidth <= 1024) {
           e.preventDefault();
           var parentItem = link.parentElement;
-          var wasOpen = parentItem.classList.contains("open");
-          document.querySelectorAll(".nav-item.has-dropdown.open").forEach(function (other) {
+          var willOpen = !parentItem.classList.contains("open");
+          document.querySelectorAll(".nav-item.has-dropdown").forEach(function (other) {
             if (other !== parentItem) {
               other.classList.remove("open");
+              var otherTrigger = other.querySelector(":scope > .nav-link");
+              if (otherTrigger) {
+                otherTrigger.setAttribute("aria-expanded", "false");
+              }
             }
           });
-          parentItem.classList.toggle("open", !wasOpen);
+          parentItem.classList.toggle("open", willOpen);
+          link.setAttribute("aria-expanded", willOpen ? "true" : "false");
         }
       });
     });
@@ -115,19 +192,25 @@ window.LAYOUT_CORE = (function () {
       nav.querySelectorAll(".nav-dropdown-link, .nav-item:not(.has-dropdown) > .nav-link, .mobile-nav-footer a").forEach(function (leaf) {
         leaf.addEventListener("click", function () {
           if (window.innerWidth <= 1024) {
-            setDrawerState(false);
+            setDrawerState(false, false);
           }
         });
       });
     }
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 1024 && nav && nav.classList.contains("active")) {
-        setDrawerState(false);
+      if (!nav) {
+        return;
+      }
+      if (window.innerWidth > 1024) {
+        setDrawerState(false, false);
+        nav.removeAttribute("aria-hidden");
+      } else if (!nav.classList.contains("active")) {
+        nav.setAttribute("aria-hidden", "true");
       }
     });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && nav && nav.classList.contains("active")) {
-        setDrawerState(false);
+        setDrawerState(false, true);
       }
     });
   }
@@ -136,22 +219,31 @@ window.LAYOUT_CORE = (function () {
     if (saved === "dark") {
       document.documentElement.classList.add("dark-mode");
     }
-    var btn = document.getElementById("theme-toggle-btn");
-    function syncIcon() {
-      if (!btn) {
-        return;
-      }
+    var toggles = document.querySelectorAll("[data-theme-toggle]");
+    function syncThemeButtons() {
       var isDark = document.documentElement.classList.contains("dark-mode");
-      btn.innerHTML = isDark ? '<i class="ph ph-sun" aria-hidden="true"></i>' : '<i class="ph ph-moon" aria-hidden="true"></i>';
+      toggles.forEach(function (btn) {
+        var variant = btn.getAttribute("data-theme-toggle");
+        btn.setAttribute("aria-pressed", isDark ? "true" : "false");
+        if (variant === "icon") {
+          btn.innerHTML = isDark ? '<i class="ph ph-sun" aria-hidden="true"></i>' : '<i class="ph ph-moon" aria-hidden="true"></i>';
+        } else {
+          var iconCls = isDark ? "ph-moon" : "ph-sun";
+          var stateLabel = isDark ? "Gelap" : "Terang";
+          btn.innerHTML =
+            '<span class="nav-link-main"><i class="ph ' + iconCls + ' nav-item-icon" aria-hidden="true"></i><span>Mode Tampilan</span></span>' +
+            '<span class="nav-theme-state">' + stateLabel + "</span>";
+        }
+      });
     }
-    syncIcon();
-    if (btn) {
+    syncThemeButtons();
+    toggles.forEach(function (btn) {
       btn.addEventListener("click", function () {
         var isDark = document.documentElement.classList.toggle("dark-mode");
         localStorage.setItem(THEME_KEY, isDark ? "dark" : "light");
-        syncIcon();
+        syncThemeButtons();
       });
-    }
+    });
   }
   function openModal(id) {
     var el = document.getElementById(id);
@@ -199,7 +291,7 @@ window.LAYOUT_CORE = (function () {
       (d.collaborationTracks || []).forEach(function (tr) {
         entries.push({
           type: tr.badge,
-          title: tr.headline,
+          title: tr.title,
           url: "karya/index.html?track=" + encodeURIComponent(tr.key),
           text: tr.entity + " " + tr.summary + " " + tr.points.join(" ")
         });
@@ -207,7 +299,7 @@ window.LAYOUT_CORE = (function () {
       entries.push(
         { type: "Profil Hukum", title: "Tentang Muhammad Lukman Hakim, S.H. & Pendidikan", url: "profil/tentang.html", text: "Hukum Keluarga IAI Al-Qolam SMK PGRI BNSP ISI TOEFL" },
         { type: "Karier", title: "Pengalaman QMR Pelayaran & Unit Usaha", url: "profil/pengalaman.html", text: "Quality Management Representative Jakalelana Sintara sisitus.com" },
-        { type: "Dokumen & Kolaborasi", title: "Ajukan Kolaborasi / Izin Lampiran.pdf & Cek Status", url: "kolaborasi/index.html", text: "permintaan lampiran email persetujuan CV PDF" }
+        { type: "Dokumen & Kolaborasi", title: "Ajukan Kerja Sama / Izin Lampiran.pdf & Cek Status", url: "kolaborasi/index.html", text: "permintaan lampiran email persetujuan CV PDF" }
       );
       d.portfolioItems.forEach(function (p) {
         entries.push({
@@ -326,9 +418,104 @@ window.LAYOUT_CORE = (function () {
     }, 6500);
   }
   function hydrateSidebar() {
-    var quoteEl = document.getElementById("sidebar-profile-quote");
-    if (quoteEl) {
-      quoteEl.textContent = '"' + window.SITE_DATA.profile.quote + '"';
+    var data = window.SITE_DATA;
+    var p = data.profile;
+    setText("sidebar-profile-name", p.fullName);
+    setText("sidebar-profile-role", p.tagline);
+    setText("sidebar-profile-quote", '"' + p.quote + '"');
+    var trackListEl = document.getElementById("sidebar-track-links");
+    if (trackListEl) {
+      var trackIcons = { travel: "ph-airplane-tilt", digital: "ph-code", "hukum-manajemen": "ph-scales" };
+      var trackShort = {
+        travel: "Tour & Travel (Jakalelana.id)",
+        digital: "Web: PT Sintara / sisitus.com",
+        "hukum-manajemen": "Hukum (S.H.), QMR & Kantor"
+      };
+      var itemsHtml = (data.collaborationTracks || []).map(function (tr) {
+        var href = window.DOM_UTILS.withRoot("karya/index.html?track=" + encodeURIComponent(tr.key));
+        var ic = trackIcons[tr.key] || "ph-compass";
+        return (
+          '<a class="sidebar-link-item" href="' + window.DOM_UTILS.escapeHtml(href) + '">' +
+          '<span class="sidebar-link-label"><i class="ph ' + ic + '" aria-hidden="true"></i> ' + window.DOM_UTILS.escapeHtml(trackShort[tr.key] || tr.badge) + "</span>" +
+          '<span class="sidebar-link-cta">Buka <i class="ph ph-caret-right" aria-hidden="true"></i></span>' +
+          "</a>"
+        );
+      });
+      var poemHref = window.DOM_UTILS.withRoot("puisi/index.html");
+      var poemCount = (data.poems || []).length;
+      itemsHtml.push(
+        '<a class="sidebar-link-item" href="' + window.DOM_UTILS.escapeHtml(poemHref) + '">' +
+        '<span class="sidebar-link-label"><i class="ph ph-book-open-text" aria-hidden="true"></i> Personal: Antologi Puisi</span>' +
+        '<span class="sidebar-link-cta">' + poemCount + ' Karya <i class="ph ph-caret-right" aria-hidden="true"></i></span>' +
+        "</a>"
+      );
+      trackListEl.innerHTML = itemsHtml.join("");
+    }
+    var hotlinesEl = document.getElementById("sidebar-hotlines");
+    if (hotlinesEl) {
+      var hotlines = [
+        {
+          icon: "ph-whatsapp-logo",
+          title: "WhatsApp & Telepon",
+          open: true,
+          body: '<div>Nomor aktif: <strong>' + window.DOM_UTILS.escapeHtml(p.phoneDisplay) + '</strong></div><a class="hotline-cta" href="' + window.DOM_UTILS.escapeHtml(p.whatsappUrl) + '" target="_blank" rel="noopener noreferrer">Hubungi via WhatsApp <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>'
+        },
+        {
+          icon: "ph-envelope",
+          title: "Surat Elektronik (Email)",
+          open: false,
+          body: "<div>" + window.DOM_UTILS.escapeHtml(p.email) + '</div><a class="hotline-cta" href="mailto:' + window.DOM_UTILS.escapeHtml(p.email) + '">Kirim Email Langsung <i class="ph ph-arrow-right" aria-hidden="true"></i></a>'
+        },
+        {
+          icon: "ph-instagram-logo",
+          title: "Media Sosial Resmi",
+          open: false,
+          body: '<div>Instagram: <a class="hotline-cta" href="' + window.DOM_UTILS.escapeHtml(p.instagramUrl) + '" target="_blank" rel="noopener noreferrer">' + window.DOM_UTILS.escapeHtml(p.instagramHandle) + '</a></div><div>Facebook: <a class="hotline-cta" href="' + window.DOM_UTILS.escapeHtml(p.facebookUrl) + '" target="_blank" rel="noopener noreferrer">' + window.DOM_UTILS.escapeHtml(p.facebookName) + "</a></div>"
+        },
+        {
+          icon: "ph-map-pin",
+          title: "Alamat Domisili",
+          open: false,
+          body: "<div>" + window.DOM_UTILS.escapeHtml(p.address) + "</div>"
+        }
+      ];
+      hotlinesEl.innerHTML = hotlines
+        .map(function (h) {
+          return (
+            '<div class="hotline-item' + (h.open ? " active" : "") + '">' +
+            '<button type="button" class="hotline-trigger" aria-expanded="' + (h.open ? "true" : "false") + '">' +
+            '<span class="hotline-title-wrap"><i class="ph ' + h.icon + '" aria-hidden="true"></i> ' + window.DOM_UTILS.escapeHtml(h.title) + "</span>" +
+            '<i class="ph ph-caret-down hotline-chevron" aria-hidden="true"></i>' +
+            "</button>" +
+            '<div class="hotline-body">' + h.body + "</div>" +
+            "</div>"
+          );
+        })
+        .join("");
+      hotlinesEl.querySelectorAll(".hotline-trigger").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var parent = btn.closest(".hotline-item");
+          if (parent) {
+            var isNowOpen = parent.classList.toggle("active");
+            btn.setAttribute("aria-expanded", isNowOpen ? "true" : "false");
+          }
+        });
+      });
+    }
+    var bioBody = document.getElementById("bio-modal-body");
+    if (bioBody) {
+      bioBody.innerHTML =
+        '<div class="modal-profile-row">' +
+        '<img class="modal-profile-img" src="' + window.DOM_UTILS.escapeHtml(window.DOM_UTILS.withRoot(p.portraitPath)) + '" alt="Foto ' + window.DOM_UTILS.escapeHtml(p.fullName) + '" width="110" height="140">' +
+        "<div>" +
+        "<h3>" + window.DOM_UTILS.escapeHtml(p.fullName) + "</h3>" +
+        '<p class="text-muted">' + window.DOM_UTILS.escapeHtml(p.cityRegion) + ", Indonesia</p>" +
+        '<p class="mt-12">Assalamu\'alaikum warahmatullahi wabarakatuh. Selamat datang. Supaya pembicaraan kita langsung tertuju ke kebutuhan Anda, informasi layanan dan latar belakang saya dibagi seperti berikut:</p>' +
+        '<p class="mt-12"><strong>1. Tour &amp; Travel:</strong> ditangani lewat <strong>Jakalelana.id</strong>.<br><strong>2. Website &amp; Sistem Digital:</strong> dikerjakan melalui <strong>PT Sintara Digital Nusantara (sisitus.com)</strong>.<br><strong>3. Hukum, Perkantoran &amp; Manajemen Mutu (QMR):</strong> berbekal pendidikan Sarjana Hukum (S.H.), pengalaman QMR pelayaran, serta sertifikasi BNSP KKNI Level II.</p>' +
+        '<div class="mt-12">' +
+        '<a class="btn btn-primary btn-sm" href="' + window.DOM_UTILS.escapeHtml(window.DOM_UTILS.withRoot("profil/tentang.html")) + '">Profil Hukum &amp; Pendidikan</a> ' +
+        '<a class="btn btn-gold btn-sm" href="' + window.DOM_UTILS.escapeHtml(window.DOM_UTILS.withRoot("kolaborasi/index.html")) + '">Ajukan Kerja Sama / Lampiran</a>' +
+        "</div></div></div>";
     }
     var openBio = document.getElementById("open-bio-modal-btn");
     if (openBio) {
@@ -336,14 +523,37 @@ window.LAYOUT_CORE = (function () {
         openModal("bio-modal");
       });
     }
-    document.querySelectorAll(".hotline-trigger").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        var parent = btn.closest(".hotline-item");
-        if (parent) {
-          parent.classList.toggle("active");
-        }
-      });
-    });
+  }
+  function renderFooterLinks(targetId, items) {
+    var box = document.getElementById(targetId);
+    if (!box || !items) {
+      return;
+    }
+    box.innerHTML = items
+      .map(function (it) {
+        var meta = window.DOM_UTILS.resolveLink(it.href, it.external);
+        return '<a class="footer-link" href="' + window.DOM_UTILS.escapeHtml(meta.href) + '"' + meta.attr + ">" + window.DOM_UTILS.escapeHtml(it.label) + "</a>";
+      })
+      .join("");
+  }
+  function hydrateFooter() {
+    var data = window.SITE_DATA;
+    var p = data.profile;
+    setText("footer-brand-name", p.fullName);
+    setText("footer-brand-sub", p.cityRegion);
+    setText("footer-about", p.aboutShort);
+    setText("footer-copyright", p.copyright);
+    setText("footer-site-badge", p.siteBadge);
+    renderFooterLinks("footer-menu-links", data.footerMenus);
+    renderFooterLinks("footer-unit-links", data.footerUnits);
+    var contactBox = document.getElementById("footer-contact-list");
+    if (contactBox) {
+      contactBox.innerHTML =
+        '<div class="footer-contact-item"><i class="ph ph-map-pin" aria-hidden="true"></i><span>' + window.DOM_UTILS.escapeHtml(p.address) + "</span></div>" +
+        '<div class="footer-contact-item"><i class="ph ph-whatsapp-logo" aria-hidden="true"></i><span>WhatsApp: <a class="footer-link" href="' + window.DOM_UTILS.escapeHtml(p.whatsappUrl) + '" target="_blank" rel="noopener noreferrer">' + window.DOM_UTILS.escapeHtml(p.phoneDisplay) + "</a></span></div>" +
+        '<div class="footer-contact-item"><i class="ph ph-envelope" aria-hidden="true"></i><span>Email: <a class="footer-link" href="mailto:' + window.DOM_UTILS.escapeHtml(p.email) + '">' + window.DOM_UTILS.escapeHtml(p.email) + "</a></span></div>" +
+        '<div class="footer-contact-item"><i class="ph ph-instagram-logo" aria-hidden="true"></i><span>Instagram: <a class="footer-link" href="' + window.DOM_UTILS.escapeHtml(p.instagramUrl) + '" target="_blank" rel="noopener noreferrer">' + window.DOM_UTILS.escapeHtml(p.instagramHandle) + "</a></span></div>";
+    }
   }
   function bindScrollTopButton() {
     var btn = document.getElementById("scroll-top-btn");
@@ -369,11 +579,13 @@ window.LAYOUT_CORE = (function () {
       loadComponent("app-sidebar", "components/sidebar.html"),
       loadComponent("app-footer", "components/footer.html")
     ]).then(function () {
+      hydrateHeaderBrand();
       renderTopBarAndNav();
       bindNavigationEvents();
       bindThemeToggle();
       hydrateHeroAndSlider();
       hydrateSidebar();
+      hydrateFooter();
       bindSearchModal();
       bindScrollTopButton();
       bindModalEvents();

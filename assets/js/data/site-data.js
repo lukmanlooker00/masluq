@@ -4,6 +4,7 @@ window.SITE_DATA = {
     shortName: "Lukman Hakim",
     monogram: "MLH",
     tagline: "Sarjana Hukum • Pemilik Usaha • Pengembang Web",
+    cityRegion: "Sidoarjo, Jawa Timur",
     address: "Jl. Manyar II, Sidoarjo, Jawa Timur, Indonesia",
     phoneDisplay: "0812-1528-9095",
     phoneRaw: "081215289095",
@@ -16,14 +17,18 @@ window.SITE_DATA = {
     portraitPath: "assets/img/profile/lukman-hakim.webp",
     logoPath: "assets/img/logo/logo.webp",
     cvPath: "assets/docs/Curriculum_Vitae.pdf",
-    quote: "Setiap keperluan kerja sama sudah saya pisahkan pintunya, supaya Anda yang butuh travel, jasa website, maupun tenaga hukum atau manajemen bisa langsung berdiskusi sesuai tujuannya."
+    quote: "Setiap keperluan kerja sama sudah saya pisahkan pintunya, supaya Anda yang butuh travel, jasa website, maupun tenaga hukum atau manajemen bisa langsung berdiskusi sesuai tujuannya.",
+    aboutShort: "Lulusan S1 Hukum Keluarga IAI Al-Qolam Malang, mantan QMR perusahaan pelayaran, pemilik Jakalelana.id dan PT Sintara Digital Nusantara (sisitus.com), serta fullstack web developer.",
+    copyright: "© 2026 Muhammad Lukman Hakim, S.H. Seluruh hak cipta dilindungi.",
+    siteBadge: "Situs Personal Resmi • Sidoarjo, Indonesia"
   },
   navigation: [
-    { label: "Beranda", href: "index.html", key: "beranda" },
+    { label: "Beranda", href: "index.html", key: "beranda", icon: "ph-house" },
     {
       label: "Bidang & Karya",
       href: "karya/index.html",
       key: "karya",
+      icon: "ph-compass",
       children: [
         { label: "Tour & Travel (Jakalelana.id)", href: "karya/index.html?track=travel" },
         { label: "Website & Digital (PT Sintara)", href: "karya/index.html?track=digital" },
@@ -35,23 +40,39 @@ window.SITE_DATA = {
       label: "Profil",
       href: "profil/tentang.html",
       key: "profil",
+      icon: "ph-user",
       children: [
         { label: "Tentang & Pendidikan", href: "profil/tentang.html" },
         { label: "Pengalaman Kerja & Usaha", href: "profil/pengalaman.html" }
       ]
     },
-    { label: "Antologi Puisi", href: "puisi/index.html", key: "puisi" },
+    { label: "Antologi Puisi", href: "puisi/index.html", key: "puisi", icon: "ph-book-open-text" },
     {
       label: "Kolaborasi & Dokumen",
       href: "kolaborasi/index.html",
       key: "kolaborasi",
+      icon: "ph-handshake",
       children: [
         { label: "Ajukan Kerja Sama / Izin Lampiran", href: "kolaborasi/index.html" },
         { label: "Unduh Curriculum Vitae (PDF)", href: "assets/docs/Curriculum_Vitae.pdf", external: true },
         { label: "Cek Status Permohonan", href: "kolaborasi/index.html#status-akses" }
       ]
     },
-    { label: "Portal Admin", href: "admin/index.html", key: "admin" }
+    { label: "Portal Admin", href: "admin/index.html", key: "admin", icon: "ph-lock-key" }
+  ],
+  footerMenus: [
+    { label: "Beranda", href: "index.html" },
+    { label: "Tentang & Pendidikan", href: "profil/tentang.html" },
+    { label: "Pengalaman & Usaha", href: "profil/pengalaman.html" },
+    { label: "Bidang & Portofolio", href: "karya/index.html" },
+    { label: "Antologi Puisi", href: "puisi/index.html" }
+  ],
+  footerUnits: [
+    { label: "Jakalelana.id", href: "https://jakalelana.id", external: true },
+    { label: "Sisitus.com (PT Sintara)", href: "https://sisitus.com", external: true },
+    { label: "Curriculum Vitae (PDF)", href: "assets/docs/Curriculum_Vitae.pdf", external: true },
+    { label: "Permohonan Lampiran.pdf", href: "kolaborasi/index.html" },
+    { label: "Portal Admin Dokumen", href: "admin/index.html" }
   ],
   heroSlides: [
     {

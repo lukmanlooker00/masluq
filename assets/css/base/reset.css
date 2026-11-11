@@ -2,11 +2,16 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--header-scroll-offset);
   max-width: 100%;
   overflow-x: clip;
+}
+[id] {
+  scroll-margin-top: var(--header-scroll-offset);
 }
 body {
   margin: 0;
@@ -29,6 +34,37 @@ img {
 a {
   color: inherit;
   text-decoration: none;
+}
+a,
+button,
+summary,
+label,
+input,
+select,
+textarea,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+button,
+.btn,
+.nav-link,
+.nav-dropdown-link,
+.header-icon-btn,
+.filter-pill,
+.hero-slider-btn,
+.hotline-trigger,
+.floating-action-btn,
+.mobile-nav-close {
+  -webkit-user-select: none;
+  user-select: none;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}
+:focus-visible {
+  outline: 2px solid var(--color-accent-gold);
+  outline-offset: 2px;
 }
 ul,
 ol {

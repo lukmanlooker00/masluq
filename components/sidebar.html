@@ -3,10 +3,10 @@
     <div class="widget-header"><i class="ph ph-user" aria-hidden="true"></i> Profil Singkat</div>
     <div class="profile-card">
       <div class="profile-photo-wrap">
-        <img class="profile-photo" data-root-src="assets/img/profile/lukman-hakim.webp" alt="Foto Muhammad Lukman Hakim, S.H." width="92" height="92">
+        <img class="profile-photo" data-root-src="assets/img/profile/lukman-hakim.webp" alt="Foto Profil" width="92" height="92">
       </div>
-      <div class="profile-name" id="sidebar-profile-name">Muhammad Lukman Hakim, S.H.</div>
-      <div class="profile-role" id="sidebar-profile-role">Sarjana Hukum • Pengelola Usaha • Pengembang Web</div>
+      <div class="profile-name" id="sidebar-profile-name"></div>
+      <div class="profile-role" id="sidebar-profile-role"></div>
       <blockquote class="profile-quote" id="sidebar-profile-quote"></blockquote>
       <div class="profile-actions">
         <button type="button" class="btn btn-primary btn-block btn-sm" id="open-bio-modal-btn"><i class="ph ph-user" aria-hidden="true"></i> Sambutan &amp; Biodata</button>
@@ -16,69 +16,12 @@
     </div>
   </div>
   <div class="sidebar-widget">
-    <div class="widget-header"><i class="ph ph-compass" aria-hidden="true"></i> Pilih Jalur Kolaborasi</div>
-    <div class="sidebar-link-list">
-      <a class="sidebar-link-item" data-root-href="karya/index.html?track=travel">
-        <span class="sidebar-link-label"><i class="ph ph-airplane-tilt" aria-hidden="true"></i> Tour &amp; Travel (Jakalelana.id)</span>
-        <span class="sidebar-link-cta">Buka <i class="ph ph-caret-right" aria-hidden="true"></i></span>
-      </a>
-      <a class="sidebar-link-item" data-root-href="karya/index.html?track=digital">
-        <span class="sidebar-link-label"><i class="ph ph-code" aria-hidden="true"></i> Web: PT Sintara / sisitus.com</span>
-        <span class="sidebar-link-cta">Buka <i class="ph ph-caret-right" aria-hidden="true"></i></span>
-      </a>
-      <a class="sidebar-link-item" data-root-href="karya/index.html?track=hukum-manajemen">
-        <span class="sidebar-link-label"><i class="ph ph-scales" aria-hidden="true"></i> Hukum (S.H.), QMR &amp; Kantor</span>
-        <span class="sidebar-link-cta">Buka <i class="ph ph-caret-right" aria-hidden="true"></i></span>
-      </a>
-      <a class="sidebar-link-item" data-root-href="puisi/index.html">
-        <span class="sidebar-link-label"><i class="ph ph-book-open-text" aria-hidden="true"></i> Personal: Antologi Puisi</span>
-        <span class="sidebar-link-cta">6 Karya <i class="ph ph-caret-right" aria-hidden="true"></i></span>
-      </a>
-    </div>
+    <div class="widget-header"><i class="ph ph-compass" aria-hidden="true"></i> Pilih Bidang Kolaborasi</div>
+    <div class="sidebar-link-list" id="sidebar-track-links"></div>
   </div>
   <div class="sidebar-widget">
     <div class="widget-header"><i class="ph ph-chat-circle-dots" aria-hidden="true"></i> Saluran Komunikasi</div>
-    <div class="hotline-list" id="sidebar-hotlines">
-      <div class="hotline-item active">
-        <button type="button" class="hotline-trigger">
-          <span class="hotline-title-wrap"><i class="ph ph-whatsapp-logo" aria-hidden="true"></i> WhatsApp &amp; Telepon</span>
-          <i class="ph ph-caret-down hotline-chevron" aria-hidden="true"></i>
-        </button>
-        <div class="hotline-body">
-          <div>Nomor aktif: <strong id="sidebar-wa-number">0812-1528-9095</strong></div>
-          <a class="hotline-cta" id="sidebar-wa-link" href="https://wa.me/6281215289095" target="_blank" rel="noopener noreferrer">Hubungi via WhatsApp <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-        </div>
-      </div>
-      <div class="hotline-item">
-        <button type="button" class="hotline-trigger">
-          <span class="hotline-title-wrap"><i class="ph ph-envelope" aria-hidden="true"></i> Surat Elektronik (Email)</span>
-          <i class="ph ph-caret-down hotline-chevron" aria-hidden="true"></i>
-        </button>
-        <div class="hotline-body">
-          <div id="sidebar-email-text">lukmanlooker00@gmail.com</div>
-          <a class="hotline-cta" id="sidebar-email-link" href="mailto:lukmanlooker00@gmail.com">Kirim Email Langsung <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
-        </div>
-      </div>
-      <div class="hotline-item">
-        <button type="button" class="hotline-trigger">
-          <span class="hotline-title-wrap"><i class="ph ph-instagram-logo" aria-hidden="true"></i> Media Sosial Resmi</span>
-          <i class="ph ph-caret-down hotline-chevron" aria-hidden="true"></i>
-        </button>
-        <div class="hotline-body">
-          <div>Instagram: <a class="hotline-cta" id="sidebar-ig-link" href="https://www.instagram.com/lukman_looker/" target="_blank" rel="noopener noreferrer">@lukman_looker</a></div>
-          <div>Facebook: <a class="hotline-cta" id="sidebar-fb-link" href="https://www.facebook.com/search/top?q=muhammad%20lukman%20hakim" target="_blank" rel="noopener noreferrer">Muhammad Lukman Hakim</a></div>
-        </div>
-      </div>
-      <div class="hotline-item">
-        <button type="button" class="hotline-trigger">
-          <span class="hotline-title-wrap"><i class="ph ph-map-pin" aria-hidden="true"></i> Alamat Domisili</span>
-          <i class="ph ph-caret-down hotline-chevron" aria-hidden="true"></i>
-        </button>
-        <div class="hotline-body">
-          <div id="sidebar-address-text">Jl. Manyar II, Sidoarjo, Jawa Timur, Indonesia</div>
-        </div>
-      </div>
-    </div>
+    <div class="hotline-list" id="sidebar-hotlines"></div>
   </div>
 </aside>
 <div class="modal-overlay" id="bio-modal" role="dialog" aria-modal="true" aria-labelledby="bio-modal-title">
@@ -87,20 +30,6 @@
       <h2 class="modal-title" id="bio-modal-title">Biodata &amp; Fokus Kolaborasi</h2>
       <button type="button" class="modal-close-btn" data-close-modal="bio-modal" aria-label="Tutup biodata"><i class="ph ph-x" aria-hidden="true"></i></button>
     </div>
-    <div class="modal-body">
-      <div class="modal-profile-row">
-        <img class="modal-profile-img" data-root-src="assets/img/profile/lukman-hakim.webp" alt="Foto Muhammad Lukman Hakim, S.H." width="110" height="140">
-        <div>
-          <h3>Muhammad Lukman Hakim, S.H.</h3>
-          <p class="text-muted">Sidoarjo, Jawa Timur, Indonesia</p>
-          <p class="mt-12">Assalamu'alaikum warahmatullahi wabarakatuh. Selamat datang. Supaya pembicaraan kita langsung tertuju ke kebutuhan Anda, informasi layanan dan latar belakang saya dibagi seperti berikut:</p>
-          <p class="mt-12"><strong>1. Tour &amp; Travel:</strong> ditangani lewat <strong>Jakalelana.id</strong>.<br><strong>2. Website &amp; Sistem Digital:</strong> dikerjakan melalui <strong>PT Sintara Digital Nusantara (sisitus.com)</strong>.<br><strong>3. Hukum, Perkantoran &amp; Manajemen Mutu (QMR):</strong> berbekal pendidikan Sarjana Hukum (S.H.), pengalaman QMR pelayaran, serta sertifikasi BNSP KKNI Level II.</p>
-          <div class="mt-12">
-            <a class="btn btn-primary btn-sm" data-root-href="profil/tentang.html">Profil Hukum &amp; Pendidikan</a>
-            <a class="btn btn-gold btn-sm" data-root-href="kolaborasi/index.html">Ajukan Kolaborasi / Lampiran</a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="modal-body" id="bio-modal-body"></div>
   </div>
 </div>

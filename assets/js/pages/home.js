@@ -33,12 +33,10 @@ window.PAGE_HOME = (function () {
             return '<li class="track-point-item"><i class="ph ph-check-circle" aria-hidden="true"></i><span>' + window.DOM_UTILS.escapeHtml(pt) + "</span></li>";
           })
           .join("");
-        var pHref = tr.primaryBtn.external ? tr.primaryBtn.url : window.DOM_UTILS.withRoot(tr.primaryBtn.url);
-        var pAttr = tr.primaryBtn.external ? ' target="_blank" rel="noopener noreferrer"' : "";
-        var pIcon = tr.primaryBtn.external ? '<i class="ph ph-arrow-up-right" aria-hidden="true"></i>' : '<i class="ph ph-user" aria-hidden="true"></i>';
-        var sHref = tr.secondaryBtn.external ? tr.secondaryBtn.url : window.DOM_UTILS.withRoot(tr.secondaryBtn.url);
-        var sAttr = tr.secondaryBtn.external ? ' target="_blank" rel="noopener noreferrer"' : "";
-        var sIcon = tr.secondaryBtn.external ? '<i class="ph ph-file-pdf" aria-hidden="true"></i>' : '<i class="ph ph-paper-plane-tilt" aria-hidden="true"></i>';
+        var pLink = window.DOM_UTILS.resolveLink(tr.primaryBtn.url, tr.primaryBtn.external);
+        var pIcon = pLink.isExternal ? '<i class="ph ph-arrow-up-right" aria-hidden="true"></i>' : '<i class="ph ph-user" aria-hidden="true"></i>';
+        var sLink = window.DOM_UTILS.resolveLink(tr.secondaryBtn.url, tr.secondaryBtn.external);
+        var sIcon = sLink.isExternal ? '<i class="ph ph-file-pdf" aria-hidden="true"></i>' : '<i class="ph ph-paper-plane-tilt" aria-hidden="true"></i>';
         var dHref = window.DOM_UTILS.withRoot(tr.detailBtn.url);
         return (
           '<article class="track-card track-card-' + window.DOM_UTILS.escapeHtml(tr.key) + '" id="' + window.DOM_UTILS.escapeHtml(tr.anchorId) + '">' +
@@ -53,8 +51,8 @@ window.PAGE_HOME = (function () {
           '<p class="card-excerpt">' + window.DOM_UTILS.escapeHtml(tr.summary) + "</p>" +
           '<ul class="track-points">' + pointsHtml + "</ul>" +
           '<div class="track-actions">' +
-          '<a class="btn btn-primary btn-sm" href="' + window.DOM_UTILS.escapeHtml(pHref) + '"' + pAttr + ">" + window.DOM_UTILS.escapeHtml(tr.primaryBtn.label) + " " + pIcon + "</a>" +
-          '<a class="btn btn-gold btn-sm" href="' + window.DOM_UTILS.escapeHtml(sHref) + '"' + sAttr + ">" + sIcon + " " + window.DOM_UTILS.escapeHtml(tr.secondaryBtn.label) + "</a>" +
+          '<a class="btn btn-primary btn-sm" href="' + window.DOM_UTILS.escapeHtml(pLink.href) + '"' + pLink.attr + ">" + window.DOM_UTILS.escapeHtml(tr.primaryBtn.label) + " " + pIcon + "</a>" +
+          '<a class="btn btn-gold btn-sm" href="' + window.DOM_UTILS.escapeHtml(sLink.href) + '"' + sLink.attr + ">" + sIcon + " " + window.DOM_UTILS.escapeHtml(tr.secondaryBtn.label) + "</a>" +
           '<a class="btn btn-outline btn-sm" href="' + window.DOM_UTILS.escapeHtml(dHref) + '">' + window.DOM_UTILS.escapeHtml(tr.detailBtn.label) + ' <i class="ph ph-arrow-right" aria-hidden="true"></i></a>' +
           "</div></div></div></article>"
         );
@@ -131,11 +129,9 @@ window.PAGE_HOME = (function () {
     var doubled = links.concat(links);
     track.innerHTML = doubled
       .map(function (link) {
-        var isExt = /^https?:/i.test(link.url) || /\.pdf$/i.test(link.url);
-        var href = window.DOM_UTILS.withRoot(link.url);
-        var extAttr = isExt ? ' target="_blank" rel="noopener noreferrer"' : "";
+        var meta = window.DOM_UTILS.resolveLink(link.url, false);
         return (
-          '<a class="ecosystem-chip" href="' + window.DOM_UTILS.escapeHtml(href) + '"' + extAttr + ">" +
+          '<a class="ecosystem-chip" href="' + window.DOM_UTILS.escapeHtml(meta.href) + '"' + meta.attr + ">" +
           '<span class="ecosystem-dot" aria-hidden="true"></span>' +
           "<span>" + window.DOM_UTILS.escapeHtml(link.label) + "</span>" +
           "</a>"

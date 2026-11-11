@@ -18,15 +18,6 @@ window.PAGE_ADMIN = (function () {
       pwdGroup.classList.toggle("hidden", !fbOk);
     }
   }
-  function getStatusMeta(status) {
-    if (status === "approved") {
-      return { text: "Disetujui", cls: "pill-tag-green" };
-    }
-    if (status === "rejected" || status === "revoked") {
-      return { text: "Ditolak / Dicabut", cls: "pill-tag-red" };
-    }
-    return { text: "Menunggu", cls: "pill-tag-amber" };
-  }
   function renderDashboardData() {
     var listEl = document.getElementById("admin-requests-list");
     if (!listEl) {
@@ -55,7 +46,7 @@ window.PAGE_ADMIN = (function () {
         }
         listEl.innerHTML = filtered
           .map(function (item) {
-            var st = getStatusMeta(item.status);
+            var st = window.DOM_UTILS.getRequestStatusMeta(item.status, { pending: "Menunggu" });
             var trackHtml = item.trackLabel
               ? '<div><strong>Bidang:</strong> ' + window.DOM_UTILS.escapeHtml(item.trackLabel) + "</div>"
               : "";

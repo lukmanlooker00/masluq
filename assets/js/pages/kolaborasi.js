@@ -1,13 +1,4 @@
 window.PAGE_KOLABORASI = (function () {
-  function getStatusLabel(status) {
-    if (status === "approved") {
-      return { text: "Disetujui", cls: "pill-tag-green" };
-    }
-    if (status === "rejected" || status === "revoked") {
-      return { text: "Ditolak / Dicabut", cls: "pill-tag-red" };
-    }
-    return { text: "Menunggu Persetujuan", cls: "pill-tag-amber" };
-  }
   function populateTrackSelect() {
     var sel = document.getElementById("req-track");
     if (!sel) {
@@ -120,7 +111,7 @@ window.PAGE_KOLABORASI = (function () {
           }
           resultBox.innerHTML = items
             .map(function (item) {
-              var badge = getStatusLabel(item.status);
+              var badge = window.DOM_UTILS.getRequestStatusMeta(item.status);
               var driveLinkHtml = item.shareUrl
                 ? '<div class="mt-12"><strong>Keterangan Akses:</strong> ' + window.DOM_UTILS.escapeHtml(item.shareUrl) + "</div>"
                 : "";

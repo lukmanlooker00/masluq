@@ -52,21 +52,15 @@ window.PAGE_KARYA = (function () {
       if (pageSub) {
         pageSub.textContent = foundTrack.summary;
       }
-      var pHref = foundTrack.primaryBtn.external
-        ? foundTrack.primaryBtn.url
-        : window.DOM_UTILS.withRoot(foundTrack.primaryBtn.url);
-      var pAttr = foundTrack.primaryBtn.external ? ' target="_blank" rel="noopener noreferrer"' : "";
-      var sHref = foundTrack.secondaryBtn.external
-        ? foundTrack.secondaryBtn.url
-        : window.DOM_UTILS.withRoot(foundTrack.secondaryBtn.url);
-      var sAttr = foundTrack.secondaryBtn.external ? ' target="_blank" rel="noopener noreferrer"' : "";
+      var pLink = window.DOM_UTILS.resolveLink(foundTrack.primaryBtn.url, foundTrack.primaryBtn.external);
+      var sLink = window.DOM_UTILS.resolveLink(foundTrack.secondaryBtn.url, foundTrack.secondaryBtn.external);
       contextPanel.innerHTML =
         '<div class="info-panel mb-16">' +
         '<div class="info-panel-title">' + window.DOM_UTILS.escapeHtml(foundTrack.entity) + "</div>" +
         "<p>" + window.DOM_UTILS.escapeHtml(foundTrack.summary) + "</p>" +
         '<div class="admin-actions-row mt-12">' +
-        '<a class="btn btn-primary btn-sm" href="' + window.DOM_UTILS.escapeHtml(pHref) + '"' + pAttr + ">" + window.DOM_UTILS.escapeHtml(foundTrack.primaryBtn.label) + "</a>" +
-        '<a class="btn btn-gold btn-sm" href="' + window.DOM_UTILS.escapeHtml(sHref) + '"' + sAttr + ">" + window.DOM_UTILS.escapeHtml(foundTrack.secondaryBtn.label) + "</a>" +
+        '<a class="btn btn-primary btn-sm" href="' + window.DOM_UTILS.escapeHtml(pLink.href) + '"' + pLink.attr + ">" + window.DOM_UTILS.escapeHtml(foundTrack.primaryBtn.label) + "</a>" +
+        '<a class="btn btn-gold btn-sm" href="' + window.DOM_UTILS.escapeHtml(sLink.href) + '"' + sLink.attr + ">" + window.DOM_UTILS.escapeHtml(foundTrack.secondaryBtn.label) + "</a>" +
         "</div></div>";
     }
     function draw(filterKey) {
@@ -148,14 +142,9 @@ window.PAGE_KARYA = (function () {
       .join(" ");
     var extAction = "";
     if (found.externalUrl) {
-      var targetUrl = /^https?:/i.test(found.externalUrl)
-        ? found.externalUrl
-        : window.DOM_UTILS.withRoot(found.externalUrl);
-      var extAttr = /^https?:/i.test(found.externalUrl)
-        ? ' target="_blank" rel="noopener noreferrer"'
-        : "";
+      var extMeta = window.DOM_UTILS.resolveLink(found.externalUrl, false);
       extAction =
-        '<a class="btn btn-gold" href="' + window.DOM_UTILS.escapeHtml(targetUrl) + '"' + extAttr + '>Buka Tautan Terkait <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>';
+        '<a class="btn btn-gold" href="' + window.DOM_UTILS.escapeHtml(extMeta.href) + '"' + extMeta.attr + '>Buka Tautan Terkait <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>';
     }
     var bidangParam = found.track === "hukum-manajemen" ? "hukum" : found.track;
     wrap.innerHTML =

@@ -267,6 +267,7 @@
   display: flex;
   justify-content: flex-end;
   gap: 6px;
+  flex-shrink: 0;
 }
 .ecosystem-section {
   background-color: var(--color-surface);
@@ -392,5 +393,10 @@
   }
   .gallery-track {
     grid-auto-columns: calc(82% - 6px);
+  }
+}
+@media (max-width: 420px) {
+  .gallery-nav-btn-text {
+    display: none;
   }
 }

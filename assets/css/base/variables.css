@@ -21,13 +21,11 @@
   --color-text-on-primary: #ffffff;
   --color-header-bg: #003B9C;
   --color-footer-bg: #003B9C;
-  --color-hover: #f4f6f9;
-  --radius-kecil: 4px;
-  --radius-sedang: 8px;
-  --radius-besar: 12px;
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
   --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.08);
   --border-radius: 4px;
+  --radius-card: 6px;
+  --header-scroll-offset: 68px;
   --font-sans: 'Nunito', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   --font-serif: 'Georgia', 'Times New Roman', serif;
   --font-mono: 'Consolas', 'Courier New', monospace;
@@ -46,5 +44,4 @@ html.dark-mode {
   --color-header-bg: #242526;
   --color-footer-bg: #18191a;
   --color-text-on-primary: #e4e6eb;
-  --color-hover: #2f3032;
 }
