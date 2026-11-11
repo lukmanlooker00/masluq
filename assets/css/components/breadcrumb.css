@@ -1,0 +1,18 @@
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: #dbeafe;
+}
+.breadcrumb a {
+  color: #fde68a;
+  font-weight: 700;
+}
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+.breadcrumb-sep {
+  opacity: 0.65;
+}

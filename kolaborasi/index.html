@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ajukan kolaborasi spesifik bidang (Tour & Travel Jakalelana.id, Website PT Sintara Digital Nusantara, atau Hukum & QMR), unduh CV terbuka, atau minta izin akses Lampiran.pdf.">
+  <title>Kolaborasi &amp; Akses Dokumen — Muhammad Lukman Hakim, S.H.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="../assets/img/favicon/favicon.ico">
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body data-root="../" data-page="kolaborasi" data-nav="kolaborasi">
+  <div id="app-header"></div>
+  <main>
+    <section class="page-header-band">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Beranda</a>
+          <span class="breadcrumb-sep">/</span>
+          <span>Kolaborasi &amp; Dokumen</span>
+        </nav>
+        <h1>Kerja Sama &amp; Akses Dokumen</h1>
+        <p>Tentukan kebutuhan Anda di bawah ini. Curriculum Vitae bisa langsung diunduh, sedangkan salinan ijazah &amp; sertifikat di Lampiran.pdf memerlukan pengajuan email agar bisa disetujui.</p>
+      </div>
+    </section>
+    <div class="container">
+      <div class="main-sidebar-grid">
+        <div class="main-column">
+          <section class="form-card">
+            <div class="section-header-bar">
+              <h2 class="section-title">1. Jalur Langsung &amp; <span class="section-title-accent">CV Terbuka</span></h2>
+            </div>
+            <p>Untuk gambaran ringkas profil atau komunikasi langsung sesuai entitas usaha:</p>
+            <div class="admin-actions-row mt-12">
+              <a class="btn btn-primary btn-sm" href="../assets/docs/Curriculum_Vitae.pdf" target="_blank" rel="noopener noreferrer"><i class="ph ph-file-pdf" aria-hidden="true"></i> Unduh Curriculum_Vitae.pdf</a>
+              <a class="btn btn-gold btn-sm" href="https://jakalelana.id" target="_blank" rel="noopener noreferrer">Travel: Jakalelana.id <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+              <a class="btn btn-outline btn-sm" href="https://sisitus.com" target="_blank" rel="noopener noreferrer">Web: Sisitus.com <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+              <a class="btn btn-whatsapp btn-sm" href="https://wa.me/6281215289095" target="_blank" rel="noopener noreferrer"><i class="ph ph-whatsapp-logo" aria-hidden="true"></i> WhatsApp Langsung</a>
+            </div>
+          </section>
+          <section class="form-card">
+            <div class="section-header-bar">
+              <h2 class="section-title">2. Formulir Kolaborasi &amp; <span class="section-title-accent">Izin Lampiran.pdf</span></h2>
+            </div>
+            <div id="kolaborasi-mode-info" class="alert-box">Memeriksa konfigurasi penyimpanan...</div>
+            <p class="mb-16">Pilih topik keperluan Anda. Bila membutuhkan akses berkas pribadi <strong>Lampiran.pdf</strong> (ijazah S.H., sertifikat BNSP/ISI, dan berkas pendukung lain), cantumkan email aktif agar izin Google Drive dapat disetujui pemilik.</p>
+            <form id="lampiran-request-form">
+              <div class="form-grid">
+                <div class="form-group form-group-full">
+                  <label class="form-label" for="req-track">Bidang Kolaborasi / Keperluan Utama <span class="form-required">*</span></label>
+                  <select id="req-track" class="form-control" required></select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="req-name">Nama Lengkap <span class="form-required">*</span></label>
+                  <input type="text" id="req-name" class="form-control" required placeholder="Contoh: Budi Santoso">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="req-email">Email Aktif (Google / Instansi) <span class="form-required">*</span></label>
+                  <input type="email" id="req-email" class="form-control" required placeholder="contoh@instansi.co.id">
+                </div>
+                <div class="form-group form-group-full">
+                  <label class="form-label" for="req-org">Nama Perusahaan / Instansi / Status</label>
+                  <input type="text" id="req-org" class="form-control" placeholder="Contoh: HRD PT Pelayaran / Sekolah / UMKM">
+                </div>
+                <div class="form-group form-group-full">
+                  <label class="form-label" for="req-purpose">Rincian Kebutuhan &amp; Alasan Pengajuan <span class="form-required">*</span></label>
+                  <textarea id="req-purpose" class="form-control" rows="3" required placeholder="Contoh: Rencana paket wisata rombongan, pembuatan website company profile, atau verifikasi dokumen ijazah & QMR..."></textarea>
+                </div>
+              </div>
+              <button type="submit" id="req-submit-btn" class="btn btn-gold">Kirim Pengajuan</button>
+            </form>
+            <div id="lampiran-form-feedback" class="alert-box hidden mt-20"></div>
+          </section>
+          <section class="form-card" id="status-akses">
+            <div class="section-header-bar">
+              <h2 class="section-title">3. Cek Status <span class="section-title-accent">Permohonan</span></h2>
+            </div>
+            <p class="mb-16">Masukkan kode tiket pengajuan (contoh: <strong>LMP-XXXXXX</strong>) atau email Anda pada mode simulasi untuk melihat perkembangan persetujuan.</p>
+            <form id="status-check-form" class="search-input-wrap">
+              <input type="text" id="status-query-input" class="form-control" required placeholder="Masukkan kode tiket LMP-XXXXXX atau email...">
+              <button type="submit" class="btn btn-primary">Periksa</button>
+            </form>
+            <div id="status-check-result"></div>
+          </section>
+        </div>
+        <div id="app-sidebar"></div>
+      </div>
+    </div>
+  </main>
+  <div id="app-footer"></div>
+  <script src="../assets/js/config/backend-config.js"></script>
+  <script src="../assets/js/data/site-data.js"></script>
+  <script src="../assets/js/core/dom-utils.js"></script>
+  <script src="../assets/js/core/storage-service.js"></script>
+  <script src="../assets/js/core/layout.js"></script>
+  <script src="../assets/js/pages/kolaborasi.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

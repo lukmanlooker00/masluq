@@ -1,0 +1,65 @@
+.hidden {
+  display: none !important;
+}
+.text-center {
+  text-align: center;
+}
+.text-muted {
+  color: var(--color-neutral-medium);
+}
+.mt-12 {
+  margin-top: 12px;
+}
+.mt-20 {
+  margin-top: 20px;
+}
+.mb-16 {
+  margin-bottom: 16px;
+}
+.ph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex-shrink: 0;
+  vertical-align: -0.1em;
+}
+.icon-svg {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  vertical-align: -0.125em;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+.pill-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 3px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background-color: var(--color-primary-blue);
+  color: #ffffff;
+}
+.pill-tag-gold {
+  background-color: var(--color-accent-gold);
+  color: #111827;
+}
+.pill-tag-teal {
+  background-color: var(--strip-teal);
+  color: #ffffff;
+}
+.pill-tag-green {
+  background-color: #15803d;
+  color: #ffffff;
+}
+.pill-tag-amber {
+  background-color: #b45309;
+  color: #ffffff;
+}
+.pill-tag-red {
+  background-color: #b91c1c;
+  color: #ffffff;
+}

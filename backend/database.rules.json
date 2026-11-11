@@ -1,0 +1,19 @@
+{
+  "rules": {
+    "attachment_requests": {
+      ".read": "auth != null",
+      "$requestId": {
+        ".read": true,
+        ".write": "auth != null || (!data.exists() && newData.hasChildren(['code', 'requesterName', 'requesterEmail', 'purpose', 'status', 'createdAt']) && newData.child('status').val() === 'pending')"
+      }
+    },
+    "site_meta": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "$other": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    }
+  }
+}

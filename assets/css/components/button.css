@@ -1,0 +1,78 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--border-radius);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  text-align: center;
+  line-height: 1.25;
+}
+.btn:active {
+  transform: scale(0.98);
+}
+.btn-primary {
+  background-color: var(--color-primary-blue);
+  color: #ffffff;
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+}
+.btn-gold {
+  background-color: var(--color-accent-gold);
+  color: #111827;
+}
+.btn-gold:hover {
+  background-color: #e09419;
+}
+.btn-outline {
+  background-color: transparent;
+  border-color: var(--color-primary-blue);
+  color: var(--color-primary-blue);
+}
+.btn-outline:hover {
+  background-color: var(--color-primary-blue);
+  color: #ffffff;
+}
+.btn-whatsapp {
+  background-color: #15803d;
+  color: #ffffff;
+}
+.btn-whatsapp:hover {
+  background-color: #166534;
+}
+.btn-sm {
+  padding: 5px 10px;
+  font-size: 0.78rem;
+}
+.btn-block {
+  width: 100%;
+}
+.filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.filter-pill {
+  padding: 7px 14px;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-neutral-dark);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.filter-pill:hover,
+.filter-pill.active {
+  background-color: var(--color-primary-blue);
+  color: #ffffff;
+  border-color: var(--color-primary-blue);
+}

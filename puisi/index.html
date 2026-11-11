@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kumpulan puisi asli berjudul Kegabutan yang Berujung Torehan Puisi (2022–2023) karya Muhammad Lukman Hakim, S.H.">
+  <title>Antologi Puisi — Muhammad Lukman Hakim, S.H.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="../assets/img/favicon/favicon.ico">
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body data-root="../" data-page="puisi" data-nav="puisi">
+  <div id="app-header"></div>
+  <main>
+    <section class="page-header-band">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Beranda</a>
+          <span class="breadcrumb-sep">/</span>
+          <span>Antologi Puisi</span>
+        </nav>
+        <h1>Kegabutan yang Berujung Torehan Puisi</h1>
+        <p>Enam puisi pribadi yang ditulis antara tahun 2022 dan 2023, tetap dimuat apa adanya sesuai naskah asli.</p>
+      </div>
+    </section>
+    <div class="container">
+      <div class="main-sidebar-grid">
+        <div class="main-column">
+          <section>
+            <div class="info-panel mb-16">
+              <div class="info-panel-title">Catatan Pengarang</div>
+              <p>Puisi-puisi di bawah ini ditulis di sela waktu luang dan perenungan pribadi sejak awal 2022 hingga awal 2023. Klik tombol <strong>Baca Utuh</strong> pada masing-masing kartu untuk membaca bait lengkapnya.</p>
+            </div>
+            <div class="anthology-grid" id="anthology-grid"></div>
+          </section>
+        </div>
+        <div id="app-sidebar"></div>
+      </div>
+    </div>
+  </main>
+  <div class="modal-overlay" id="poem-modal" role="dialog" aria-modal="true" aria-labelledby="poem-modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 class="modal-title" id="poem-modal-title">Judul Puisi</h2>
+        <button type="button" class="modal-close-btn" data-close-modal="poem-modal" aria-label="Tutup puisi"><i class="ph ph-x" aria-hidden="true"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="card-meta mb-16" id="poem-modal-meta"></div>
+        <div class="poem-modal-stanza" id="poem-modal-content"></div>
+      </div>
+    </div>
+  </div>
+  <div id="app-footer"></div>
+  <script src="../assets/js/data/site-data.js"></script>
+  <script src="../assets/js/core/dom-utils.js"></script>
+  <script src="../assets/js/core/layout.js"></script>
+  <script src="../assets/js/pages/puisi.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

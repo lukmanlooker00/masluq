@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Portal pengelola pribadi Muhammad Lukman Hakim, S.H. untuk menyetujui permohonan akses Lampiran.pdf.">
+  <title>Portal Admin Dokumen — Muhammad Lukman Hakim, S.H.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="../assets/img/favicon/favicon.ico">
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body data-root="../" data-page="admin" data-nav="admin">
+  <div id="app-header"></div>
+  <main>
+    <section class="page-header-band">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Beranda</a>
+          <span class="breadcrumb-sep">/</span>
+          <span>Portal Admin</span>
+        </nav>
+        <h1>Panel Persetujuan Lampiran.pdf</h1>
+        <p>Halaman khusus pemilik untuk memeriksa permintaan email dan menyetujui pembagian berkas Lampiran.pdf.</p>
+      </div>
+    </section>
+    <div class="container">
+      <div id="admin-backend-status" class="alert-box alert-box-warning mb-16">Memeriksa pengaturan penyimpanan...</div>
+      <section class="form-card" id="admin-login-section">
+        <div class="section-header-bar">
+          <h2 class="section-title">Masuk Pengelola (<span class="section-title-accent">Pemilik</span>)</h2>
+        </div>
+        <p class="mb-16">Jika Firebase Auth sudah dipasang di backend-config.js, gunakan akun pemilik untuk masuk. Selama masih memakai mode simulasi lokal, formulir ini bisa dibuka langsung untuk uji coba di peramban ini.</p>
+        <form id="admin-login-form">
+          <div class="form-group">
+            <label class="form-label" for="admin-email">Email Pengelola</label>
+            <input type="email" id="admin-email" class="form-control" required value="lukmanlooker00@gmail.com">
+          </div>
+          <div class="form-group" id="admin-password-group">
+            <label class="form-label" for="admin-password">Kata Sandi Firebase Auth</label>
+            <input type="password" id="admin-password" class="form-control" placeholder="Diisi saat Firebase Auth aktif">
+          </div>
+          <button type="submit" class="btn btn-primary">Masuk Portal Admin</button>
+        </form>
+        <div id="admin-login-error" class="alert-box alert-box-error hidden mt-12"></div>
+      </section>
+      <section class="hidden" id="admin-dashboard-section">
+        <div class="section-header-bar">
+          <h2 class="section-title">Daftar Permohonan Akses (<span class="section-title-accent" id="admin-logged-email">-</span>)</h2>
+          <button type="button" id="admin-logout-btn" class="btn btn-outline btn-sm">Keluar Sesi</button>
+        </div>
+        <div class="admin-status-grid">
+          <div class="admin-metric-card">
+            <div class="admin-metric-num" id="metric-pending">0</div>
+            <div>Menunggu Persetujuan</div>
+          </div>
+          <div class="admin-metric-card">
+            <div class="admin-metric-num" id="metric-approved">0</div>
+            <div>Disetujui</div>
+          </div>
+          <div class="admin-metric-card">
+            <div class="admin-metric-num" id="metric-rejected">0</div>
+            <div>Ditolak / Dicabut</div>
+          </div>
+        </div>
+        <div class="filter-pills">
+          <button type="button" class="filter-pill active" data-admin-filter="semua">Semua</button>
+          <button type="button" class="filter-pill" data-admin-filter="pending">Menunggu</button>
+          <button type="button" class="filter-pill" data-admin-filter="approved">Disetujui</button>
+          <button type="button" class="filter-pill" data-admin-filter="rejected">Ditolak</button>
+        </div>
+        <div class="admin-request-list" id="admin-requests-list"></div>
+      </section>
+    </div>
+  </main>
+  <div id="app-footer"></div>
+  <script src="../assets/js/config/backend-config.js"></script>
+  <script src="../assets/js/data/site-data.js"></script>
+  <script src="../assets/js/core/dom-utils.js"></script>
+  <script src="../assets/js/core/storage-service.js"></script>
+  <script src="../assets/js/core/layout.js"></script>
+  <script src="../assets/js/pages/admin.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
