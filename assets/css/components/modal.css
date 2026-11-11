@@ -1,7 +1,7 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(15, 23, 42, 0.68);
+  background-color: var(--color-scrim);
   display: none;
   align-items: center;
   justify-content: center;
@@ -17,13 +17,12 @@
   width: 100%;
   max-width: 680px;
   max-height: 90vh;
-  border-radius: 8px;
-  border-top: 4px solid var(--color-primary-blue);
-  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.32);
+  border-radius: var(--radius-bento);
+  border: 1px solid var(--color-border-strong);
+  box-shadow: var(--shadow-floating);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  animation: modalPop 0.2s ease;
 }
 .modal-header {
   display: flex;
@@ -92,12 +91,13 @@
   display: block;
   padding: 12px 14px;
   border: 1px solid var(--color-border);
-  border-left: 3px solid var(--color-primary-blue);
-  border-radius: 4px;
+  border-radius: var(--radius-bento);
   background-color: var(--color-surface);
+  transition: background-color 0.18s ease, border-color 0.18s ease;
 }
 .search-result-item:hover {
   background-color: var(--color-surface-hover);
+  border-color: var(--color-primary-blue);
 }
 .search-result-type {
   font-size: 0.72rem;
@@ -114,10 +114,10 @@
   font-family: var(--font-serif);
   font-size: 1.02rem;
   line-height: 1.85;
-  background-color: var(--color-neutral-light);
+  background-color: var(--color-bg-light);
+  border: 1px solid var(--color-border);
   padding: 18px;
-  border-left: 4px solid var(--color-accent-gold);
-  border-radius: 0 6px 6px 0;
+  border-radius: 10px;
 }
 @media (max-width: 768px) {
   .modal-body {

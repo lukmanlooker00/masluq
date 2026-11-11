@@ -61,43 +61,47 @@
             </div>
             <div class="track-section" id="home-tracks"></div>
           </section>
-          <div class="section-divider">
-            <span class="section-divider-badge">Berkas Pribadi &amp; CV</span>
-          </div>
-          <section class="form-card" aria-label="Akses CV dan Lampiran Resmi">
+          <section aria-label="Dokumen Resmi dan Catatan Pribadi">
             <div class="section-header-bar">
-              <h2 class="section-title">Dokumen Resmi (<span class="section-title-accent">CV &amp; Lampiran</span>)</h2>
+              <h2 class="section-title">Dokumen Resmi &amp; <span class="section-title-accent">Tulisan Pribadi</span></h2>
               <a class="section-link" href="kolaborasi/index.html">Halaman Permohonan <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
             </div>
-            <div class="info-box-grid">
-              <div class="feature-card">
-                <h3 class="feature-card-title"><i class="ph ph-file-pdf" aria-hidden="true"></i> Curriculum Vitae (Terbuka)</h3>
-                <p class="feature-card-desc">Bisa diunduh langsung untuk membaca ringkasan pendidikan S.H., pengalaman kerja, serta sertifikat BNSP, ISI, dan TOEFL.</p>
+            <div class="bento-personal-grid">
+              <div class="feature-card bento-doc-tile bento-doc-open">
+                <div>
+                  <div class="bento-mini-head">
+                    <span class="stat-badge">Terbuka</span>
+                    <i class="ph ph-file-pdf stat-icon bento-icon-blue" aria-hidden="true"></i>
+                  </div>
+                  <h3 class="feature-card-title">Curriculum Vitae (PDF)</h3>
+                  <p class="feature-card-desc">Bisa diunduh langsung untuk membaca ringkasan pendidikan S.H., pengalaman kerja, serta sertifikat BNSP, ISI, dan TOEFL.</p>
+                </div>
                 <div class="mt-12">
                   <a class="btn btn-primary btn-sm" href="assets/docs/Curriculum_Vitae.pdf" target="_blank" rel="noopener noreferrer"><i class="ph ph-file-arrow-down" aria-hidden="true"></i> Unduh CV (PDF)</a>
                 </div>
               </div>
-              <div class="feature-card">
-                <h3 class="feature-card-title"><i class="ph ph-lock-key" aria-hidden="true"></i> Lampiran Pendukung (Izin Email)</h3>
-                <p class="feature-card-desc">Salinan ijazah dan sertifikat pribadi tidak dibuka untuk umum. Daftarkan nama, email, dan keperluannya agar izin akses dapat diberikan.</p>
+              <div class="feature-card bento-doc-tile bento-doc-locked">
+                <div>
+                  <div class="bento-mini-head">
+                    <span class="stat-badge">Izin Email</span>
+                    <i class="ph ph-lock-key stat-icon bento-icon-gold" aria-hidden="true"></i>
+                  </div>
+                  <h3 class="feature-card-title">Lampiran Pendukung</h3>
+                  <p class="feature-card-desc">Salinan ijazah dan sertifikat pribadi tidak dibuka untuk umum. Daftarkan nama, email, dan keperluannya agar izin akses dapat diberikan.</p>
+                </div>
                 <div class="mt-12">
                   <a class="btn btn-gold btn-sm" href="kolaborasi/index.html?bidang=lampiran"><i class="ph ph-paper-plane-tilt" aria-hidden="true"></i> Ajukan Akses Lampiran.pdf</a>
                 </div>
               </div>
-            </div>
-          </section>
-          <div class="section-divider">
-            <span class="section-divider-badge">Tulisan Pribadi</span>
-          </div>
-          <section aria-label="Antologi Puisi Personal">
-            <div class="personal-poetry-strip">
-              <img class="personal-poetry-img" src="assets/img/karya/karya-puisi.webp" alt="Antologi Kegabutan yang Berujung Torehan Puisi" width="800" height="450">
-              <div>
-                <span class="pill-tag pill-tag-gold">Catatan Pribadi</span>
-                <h3 class="card-title mt-12">Antologi: Kegabutan yang Berujung Torehan Puisi</h3>
-                <p class="card-excerpt mt-12">Di sela pekerjaan kantor dan mengurus usaha, saya sesekali menulis puisi. Enam naskah asli dari tahun 2022 sampai 2023 saya simpan terpisah di menu ini.</p>
-                <div class="mt-12">
-                  <a class="btn btn-outline btn-sm" href="puisi/index.html"><i class="ph ph-book-open-text" aria-hidden="true"></i> Baca 6 Puisi Lengkap <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+              <div class="personal-poetry-strip">
+                <img class="personal-poetry-img" src="assets/img/karya/karya-puisi.webp" alt="Antologi Kegabutan yang Berujung Torehan Puisi" width="800" height="450">
+                <div>
+                  <span class="pill-tag pill-tag-gold">Catatan Pribadi</span>
+                  <h3 class="card-title mt-12">Antologi: Kegabutan yang Berujung Torehan Puisi</h3>
+                  <p class="card-excerpt mt-12">Di sela pekerjaan kantor dan mengurus usaha, saya sesekali menulis puisi. Enam naskah asli dari tahun 2022 sampai 2023 saya simpan terpisah di menu ini.</p>
+                  <div class="mt-12">
+                    <a class="btn btn-outline btn-sm" href="puisi/index.html"><i class="ph ph-book-open-text" aria-hidden="true"></i> Baca 6 Puisi Lengkap <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -125,9 +129,7 @@
         <div class="section-header-bar">
           <h2 class="section-title">Tautan Usaha &amp; <span class="section-title-accent">Kontak Resmi</span></h2>
         </div>
-        <div class="ecosystem-marquee">
-          <div class="ecosystem-track" id="home-ecosystem-track"></div>
-        </div>
+        <div class="ecosystem-grid" id="home-ecosystem-track"></div>
       </div>
     </section>
   </main>

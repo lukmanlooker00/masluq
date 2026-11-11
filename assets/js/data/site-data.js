@@ -404,12 +404,12 @@ window.SITE_DATA = {
     }
   ],
   ecosystemLinks: [
-    { label: "Tour & Travel: Jakalelana.id", url: "https://jakalelana.id" },
-    { label: "Website & Sistem: PT Sintara (sisitus.com)", url: "https://sisitus.com" },
-    { label: "Instagram @lukman_looker", url: "https://www.instagram.com/lukman_looker/" },
-    { label: "Facebook Muhammad Lukman Hakim", url: "https://www.facebook.com/search/top?q=muhammad%20lukman%20hakim" },
-    { label: "WhatsApp 0812-1528-9095", url: "https://wa.me/6281215289095" },
-    { label: "Unduh Curriculum Vitae (PDF)", url: "assets/docs/Curriculum_Vitae.pdf" }
+    { label: "Tour & Travel: Jakalelana.id", url: "https://jakalelana.id", icon: "ph-airplane-tilt" },
+    { label: "Website & Sistem: PT Sintara (sisitus.com)", url: "https://sisitus.com", icon: "ph-code" },
+    { label: "Instagram @lukman_looker", url: "https://www.instagram.com/lukman_looker/", icon: "ph-instagram-logo" },
+    { label: "Facebook Muhammad Lukman Hakim", url: "https://www.facebook.com/search/top?q=muhammad%20lukman%20hakim", icon: "ph-facebook-logo" },
+    { label: "WhatsApp 0812-1528-9095", url: "https://wa.me/6281215289095", icon: "ph-whatsapp-logo" },
+    { label: "Unduh Curriculum Vitae (PDF)", url: "assets/docs/Curriculum_Vitae.pdf", icon: "ph-file-pdf" }
   ],
   poems: [
     {

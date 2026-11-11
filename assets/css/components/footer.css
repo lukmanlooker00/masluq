@@ -48,7 +48,7 @@
   color: #ffffff;
   margin-bottom: 10px;
   padding-bottom: 5px;
-  border-bottom: 2px solid rgba(249, 168, 38, 0.55);
+  border-bottom: 1px solid var(--color-nav-btn-border);
 }
 .footer-links {
   display: flex;
@@ -83,11 +83,11 @@
   margin-top: 2px;
 }
 .footer-bottom {
-  background-color: rgba(0, 0, 0, 0.24);
+  background-color: var(--color-footer-bottom-bg);
   padding: 10px 0;
   font-size: 0.76rem;
   color: #cbd5e1;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid var(--color-header-divider);
 }
 .footer-bottom-inner {
   display: flex;
@@ -112,9 +112,9 @@
 .floating-action-btn {
   width: 36px;
   height: 36px;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  background-color: var(--color-primary-blue);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-nav-btn-border);
+  background-color: var(--color-header-band-bg);
   color: #ffffff;
   font-size: 1.02rem;
   display: inline-flex;
@@ -122,18 +122,14 @@
   justify-content: center;
   cursor: pointer;
   pointer-events: auto;
-  opacity: 0.9;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease, transform 0.12s ease;
+  box-shadow: var(--shadow-floating);
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
 }
 .floating-action-btn:hover,
 .floating-action-btn:focus-visible {
   background-color: var(--color-accent-gold);
+  border-color: var(--color-accent-gold);
   color: #111827;
-  opacity: 1;
-}
-.floating-action-btn:active {
-  transform: scale(0.95);
 }
 .scroll-top-btn {
   display: none;
@@ -191,6 +187,5 @@
     width: 30px;
     height: 30px;
     font-size: 0.9rem;
-    opacity: 0.86;
   }
 }

@@ -9,12 +9,9 @@
   font-weight: 700;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
   text-align: center;
   line-height: 1.25;
-}
-.btn:active {
-  transform: scale(0.98);
 }
 .btn-primary {
   background-color: var(--color-primary-blue);

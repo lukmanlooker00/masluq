@@ -121,19 +121,20 @@ window.PAGE_HOME = (function () {
     window.addEventListener("resize", updateSlide);
   }
   function renderEcosystem() {
-    var track = document.getElementById("home-ecosystem-track");
-    if (!track) {
+    var grid = document.getElementById("home-ecosystem-track");
+    if (!grid) {
       return;
     }
     var links = window.SITE_DATA.ecosystemLinks;
-    var doubled = links.concat(links);
-    track.innerHTML = doubled
+    grid.innerHTML = links
       .map(function (link) {
         var meta = window.DOM_UTILS.resolveLink(link.url, false);
+        var iconCls = link.icon ? link.icon : "ph-link";
         return (
           '<a class="ecosystem-chip" href="' + window.DOM_UTILS.escapeHtml(meta.href) + '"' + meta.attr + ">" +
-          '<span class="ecosystem-dot" aria-hidden="true"></span>' +
-          "<span>" + window.DOM_UTILS.escapeHtml(link.label) + "</span>" +
+          '<i class="ph ' + window.DOM_UTILS.escapeHtml(iconCls) + ' ecosystem-icon" aria-hidden="true"></i>' +
+          '<span class="ecosystem-label">' + window.DOM_UTILS.escapeHtml(link.label) + "</span>" +
+          '<i class="ph ph-arrow-up-right ecosystem-arrow" aria-hidden="true"></i>' +
           "</a>"
         );
       })

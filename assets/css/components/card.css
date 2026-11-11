@@ -1,14 +1,13 @@
 .card {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-bento);
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.18s ease, background-color 0.18s ease;
   min-width: 0;
 }
 .card:hover {
-  box-shadow: var(--shadow-md);
+  border-color: var(--color-border-strong);
 }
 .card-body {
   padding: 15px;
@@ -18,14 +17,13 @@
   grid-template-columns: 200px minmax(0, 1fr);
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 6px;
+  border-radius: var(--radius-bento);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.18s ease, background-color 0.18s ease;
 }
 .card-horizontal:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary-blue);
+  background-color: var(--color-surface-hover);
 }
 .card-horizontal-img {
   width: 100%;
@@ -74,15 +72,16 @@
 .feature-card {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-top: 3px solid var(--color-primary-blue);
-  border-radius: 6px;
-  padding: 14px;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  border-radius: var(--radius-bento);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color 0.18s ease, background-color 0.18s ease;
 }
 .feature-card:hover {
-  transform: translateY(-2px);
-  border-top-color: var(--color-accent-gold);
+  border-color: var(--color-primary-blue);
+  background-color: var(--color-surface-hover);
 }
 .feature-card-title {
   font-size: 0.94rem;

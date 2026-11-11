@@ -1,24 +1,41 @@
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 14px;
 }
 .portfolio-grid > * {
   min-width: 0;
 }
 .portfolio-card {
+  grid-column: span 6;
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 6px;
+  border-radius: var(--radius-bento);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.18s ease, background-color 0.18s ease;
+}
+.portfolio-card:nth-child(4n + 1),
+.portfolio-card:nth-child(4n) {
+  grid-column: span 7;
+}
+.portfolio-card:nth-child(4n + 2),
+.portfolio-card:nth-child(4n + 3) {
+  grid-column: span 5;
+}
+.portfolio-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+}
+.portfolio-card:last-child:nth-child(odd) .portfolio-card-img {
+  height: 100%;
+  min-height: 190px;
 }
 .portfolio-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary-blue);
+  background-color: var(--color-surface-hover);
 }
 .portfolio-card-img {
   width: 100%;
@@ -26,11 +43,12 @@
   object-fit: cover;
 }
 .portfolio-card-body {
-  padding: 14px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   gap: 6px;
   flex: 1;
+  min-width: 0;
 }
 .portfolio-card-footer {
   margin-top: auto;
@@ -41,7 +59,7 @@
 }
 .anthology-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 14px;
 }
 .anthology-grid > * {
@@ -50,13 +68,27 @@
 .poem-card {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-top: 4px solid var(--color-accent-gold);
-  border-radius: 6px;
-  padding: 15px;
-  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-bento);
+  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  transition: border-color 0.18s ease, background-color 0.18s ease;
+}
+.poem-card:nth-child(4n + 1),
+.poem-card:nth-child(4n) {
+  grid-column: span 7;
+}
+.poem-card:nth-child(4n + 2),
+.poem-card:nth-child(4n + 3) {
+  grid-column: span 5;
+}
+.poem-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+.poem-card:hover {
+  border-color: var(--color-primary-blue);
+  background-color: var(--color-surface-hover);
 }
 .poem-date {
   font-size: 0.78rem;
@@ -77,16 +109,30 @@
   color: var(--color-neutral-medium);
   background-color: var(--color-bg-light);
   padding: 12px 14px;
-  border-radius: 4px;
-  border-left: 3px solid var(--color-primary-blue);
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
 }
 @media (max-width: 768px) {
   .portfolio-grid,
   .anthology-grid {
     grid-template-columns: 1fr;
   }
+  .portfolio-card,
+  .portfolio-card:nth-child(n),
+  .portfolio-card:last-child:nth-child(odd),
+  .poem-card,
+  .poem-card:nth-child(n),
+  .poem-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+  }
+  .portfolio-card:last-child:nth-child(odd) .portfolio-card-img {
+    height: auto;
+    min-height: 0;
+  }
   .portfolio-card-body,
   .poem-card {
-    padding: 15px;
+    padding: 14px;
   }
 }
